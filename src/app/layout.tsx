@@ -41,7 +41,9 @@ export default function RootLayout({
         <LanguageProvider>
           <Header />
           <main className="flex-grow w-full">
-            {children}
+            <div className="w-full max-w-screen-2xl mx-auto">
+              {children}
+            </div>
           </main>
           <Footer />
           <Toaster />
