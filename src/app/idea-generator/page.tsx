@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Loader2, Wand2, Lightbulb } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import React from 'react';
 
 function SubmitButton() {
   const { t } = useLanguage();
@@ -23,39 +24,90 @@ function SubmitButton() {
   );
 }
 
-function IdeaResult({ data }: { data: IdeaGeneratorState['data'] }) {
+function IdeaResult({ data }: { data: string | null }) {
   const { t } = useLanguage();
 
-  if (!data) return null;
+  const parsedData = React.useMemo(() => {
+    if (!data) return null;
+
+    const lines = data.split('\n').filter(line => line.trim() !== '');
+    
+    let name = '';
+    let detailedDescription = '';
+    const features: string[] = [];
+    const materials: string[] = [];
+
+    let currentSection: 'name' | 'description' | 'features' | 'materials' | null = null;
+
+    for (const line of lines) {
+      if (line.startsWith('**Name**:')) {
+        name = line.replace('**Name**:', '').trim();
+        currentSection = null;
+      } else if (line.startsWith('**Description**:')) {
+        detailedDescription = line.replace('**Description**:', '').trim();
+        currentSection = 'description';
+      } else if (line.startsWith('**Features**:')) {
+        currentSection = 'features';
+      } else if (line.startsWith('**Materials**:')) {
+        currentSection = 'materials';
+      } else if (line.startsWith('* ')) {
+        const item = line.substring(2).trim();
+        if (currentSection === 'features') {
+          features.push(item);
+        } else if (currentSection === 'materials') {
+          materials.push(item);
+        }
+      } else if (currentSection === 'description') {
+        detailedDescription += ` ${line.trim()}`;
+      }
+    }
+    
+    if (!name && !detailedDescription && features.length === 0 && materials.length === 0) {
+      return null;
+    }
+
+    return { name, detailedDescription, features, materials };
+  }, [data]);
+
+
+  if (!parsedData) return null;
+
+  const { name, detailedDescription, features, materials } = parsedData;
 
   return (
     <Card className="bg-card/50 border border-border/50 animate-fade-in">
       <CardHeader>
         <CardTitle className="font-headline text-2xl bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-          {data.name}
+          {name}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div>
-          <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_desc')}</h3>
-          <p className="text-muted-foreground">{data.detailedDescription}</p>
-        </div>
-        <div>
-          <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_features')}</h3>
-          <ul className="list-disc list-inside text-muted-foreground space-y-1">
-            {data.features.map((feature, i) => (
-              <li key={i}>{feature}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_materials')}</h3>
-          <div className="flex flex-wrap gap-2">
-            {data.materials.map((material, i) => (
-              <Badge key={i} variant="secondary">{material}</Badge>
-            ))}
+        {detailedDescription && (
+          <div>
+            <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_desc')}</h3>
+            <p className="text-muted-foreground">{detailedDescription}</p>
           </div>
-        </div>
+        )}
+        {features.length > 0 && (
+          <div>
+            <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_features')}</h3>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1">
+              {features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {materials.length > 0 && (
+          <div>
+            <h3 className="font-bold text-lg mb-2">{t('idea_generator_result_materials')}</h3>
+            <div className="flex flex-wrap gap-2">
+              {materials.map((material, i) => (
+                <Badge key={i} variant="secondary">{material}</Badge>
+              ))}
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

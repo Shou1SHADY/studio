@@ -37,13 +37,23 @@ A user has submitted a product idea. Your task is to flesh it out into a more co
 
 User's Idea: {{{description}}}
 
-Based on the user's idea, generate the following:
-1.  A catchy and creative product name.
-2.  A detailed and engaging description that brings the product to life.
-3.  A bulleted list of 3-5 key features.
-4.  A list of suggested materials suitable for manufacturing (e.g., "Vibrant PVC Rubber", "High-Quality Embroidered Fabric").
+Based on the user's idea, generate a markdown-formatted response with the following sections:
+- **Name**: A catchy and creative product name.
+- **Description**: A detailed and engaging description that brings the product to life.
+- **Features**: A bulleted list of 3-5 key features.
+- **Materials**: A bulleted list of suggested materials suitable for manufacturing (e.g., "Vibrant PVC Rubber", "High-Quality Embroidered Fabric").
 
 Keep the tone enthusiastic, creative, and professional.
+
+Example format:
+**Name**: Supernova Fox Keychain
+**Description**: A keychain of a fox...
+**Features**:
+* Feature 1
+* Feature 2
+**Materials**:
+* Material 1
+* Material 2
 `,
 });
 

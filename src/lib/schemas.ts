@@ -6,15 +6,8 @@ export const GenerateProductIdeaInputSchema = z.object({
 });
 
 // Schema for the output of the product idea generator
-export const GenerateProductIdeaOutputSchema = z.object({
-  name: z.string().describe('A catchy and creative name for the product.'),
-  detailedDescription: z
-    .string()
-    .describe('A detailed, engaging description of the product concept.'),
-  features: z.array(z.string()).describe('A list of key features for the product.'),
-  materials: z
-    .array(z.string())
-    .describe(
-      'A list of suggested materials for manufacturing the product (e.g., PVC, Embroidered Fabric).'
-    ),
-});
+export const GenerateProductIdeaOutputSchema = z
+  .string()
+  .describe(
+    'The generated product idea as a markdown-formatted string. It should include sections for "Name", "Description", "Features", and "Materials".'
+  );
