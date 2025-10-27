@@ -13,13 +13,15 @@ export function ProductShowcaseSection() {
     <div className="bg-background py-20 sm:py-32">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/10">
+          <div className="relative w-full max-w-[400px] mx-auto aspect-square">
              <Image
-              src="https://picsum.photos/seed/keychain/800/800"
+              src="https://picsum.photos/seed/keychain/400/400"
               alt="Custom drill keychain"
-              fill
-              className="object-contain"
+              width={400}
+              height={400}
+              className="object-contain rounded-lg"
               data-ai-hint="keychain product"
+              priority={false}
             />
           </div>
           <div className="text-center md:text-left">
