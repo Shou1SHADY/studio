@@ -38,7 +38,7 @@ export const HeroSection = () => {
       {/* Scrolling Content */}
       <div className="relative z-10 -mt-[100vh]">
         {/* Initial Frame */}
-        <div className="flex h-screen flex-col items-center justify-center text-center container">
+        <div className="container flex h-screen flex-col items-center justify-center px-4 text-center">
            <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter max-w-4xl"
             style={{ textShadow: "0 2px 10px hsl(var(--background))" }}
           >
