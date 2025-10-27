@@ -28,12 +28,12 @@ export const Header = () => {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Logo />
           </Link>
-          <nav className="hidden items-center gap-6 text-sm md:flex">
+          <nav className="hidden items-center gap-2 text-sm md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-primary px-4 py-2"
+                className="font-headline font-medium text-muted-foreground transition-colors hover:text-primary px-4 py-2"
               >
                 {link.label}
               </Link>
@@ -81,7 +81,7 @@ export const Header = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="text-lg font-medium transition-colors hover:text-primary"
+                      className="font-headline text-xl font-medium text-muted-foreground transition-colors hover:text-primary"
                     >
                       {link.label}
                     </Link>
