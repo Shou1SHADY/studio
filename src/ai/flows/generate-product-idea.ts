@@ -69,7 +69,7 @@ Return the result as a valid JSON object that conforms to the following schema:
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'minimax/minimax-m2:free',
+          model: 'mistralai/mistral-7b-instruct:free',
           messages: [{role: 'user', content: prompt}],
         }),
       }
