@@ -31,7 +31,7 @@ export const HeroSection = () => {
       {/* 3D Background */}
       <div className="sticky top-0 h-screen w-full">
         <div className="absolute inset-0 z-0">
-          <ThreeScene key={new Date().toString()} />
+          <ThreeScene />
         </div>
       </div>
 
@@ -58,9 +58,9 @@ export const HeroSection = () => {
         {storyFrames.map((frame, index) => (
           <div
             key={index}
-            className="flex h-screen items-center justify-center"
+            className="container flex h-screen items-center justify-center text-center px-4"
           >
-            <div className="container max-w-2xl text-center px-4">
+            <div className="max-w-2xl">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 {frame.title}
               </h2>

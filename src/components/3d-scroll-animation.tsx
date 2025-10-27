@@ -16,38 +16,31 @@ const colors = [
 
 const ThreeScene = ({ className }: { className?: string }) => {
   const mountRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const meshRef = useRef<THREE.Mesh | null>(null);
-  const targetRotation = useRef({ x: 0, y: 0 }).current;
-  const targetColor = useRef(new THREE.Color(0x87CEFA)).current;
-
+  
   useEffect(() => {
     if (!mountRef.current) return;
     
-    let animationFrameId: number;
     let isMounted = true;
+    let animationFrameId: number;
+
+    const currentMount = mountRef.current;
 
     // Scene setup
     const scene = new THREE.Scene();
-    sceneRef.current = scene;
     const camera = new THREE.PerspectiveCamera(
       75,
-      mountRef.current.clientWidth / mountRef.current.clientHeight,
+      currentMount.clientWidth / currentMount.clientHeight,
       0.1,
       1000
     );
-    cameraRef.current = camera;
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    rendererRef.current = renderer;
 
     renderer.setSize(
-      mountRef.current.clientWidth,
-      mountRef.current.clientHeight
+      currentMount.clientWidth,
+      currentMount.clientHeight
     );
     renderer.setPixelRatio(window.devicePixelRatio);
-    mountRef.current.appendChild(renderer.domElement);
+    currentMount.appendChild(renderer.domElement);
 
     // Object
     const material = new THREE.MeshStandardMaterial({
@@ -58,7 +51,6 @@ const ThreeScene = ({ className }: { className?: string }) => {
       emissiveIntensity: 0.2,
     });
     const mesh = new THREE.Mesh(geometries[0], material);
-    meshRef.current = mesh;
     scene.add(mesh);
     camera.position.z = 4.5; // Moved camera closer
 
@@ -74,26 +66,29 @@ const ThreeScene = ({ className }: { className?: string }) => {
     scene.add(pointLight2);
     
     const elasticity = 0.05;
+    const targetRotation = { x: 0, y: 0 };
+    const targetColor = new THREE.Color(0x87CEFA);
 
     function onScroll() {
+      if (!isMounted) return;
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       
       const totalFrames = 5; 
-      
       const chapterIndex = (scrollY / scrollHeight) > (2.5 / totalFrames) ? 1 : 0;
 
       targetRotation.y = scrollY * 0.002;
       targetRotation.x = scrollY * 0.001;
       
-      if (meshRef.current && meshRef.current.geometry !== geometries[chapterIndex]) {
-        meshRef.current.geometry.dispose();
-        meshRef.current.geometry = geometries[chapterIndex];
+      if (mesh.geometry !== geometries[chapterIndex]) {
+        mesh.geometry.dispose();
+        mesh.geometry = geometries[chapterIndex];
       }
       targetColor.copy(colors[chapterIndex]);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     
+    // Give browser a moment to restore scroll position on back/forward navigation
     setTimeout(onScroll, 100);
 
     const clock = new THREE.Clock();
@@ -101,39 +96,27 @@ const ThreeScene = ({ className }: { className?: string }) => {
       if (!isMounted) return;
       animationFrameId = requestAnimationFrame(animate);
 
-      if (meshRef.current) {
-        const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = clock.getElapsedTime();
 
-        const continuousRotationX = Math.sin(elapsedTime * 0.2) * 0.25;
-        const continuousRotationY = elapsedTime * 0.1;
-        
-        meshRef.current.rotation.x +=
-          (targetRotation.x + continuousRotationX - meshRef.current.rotation.x) * elasticity;
-        meshRef.current.rotation.y +=
-          (targetRotation.y + continuousRotationY - meshRef.current.rotation.y) * elasticity;
-        
-        const material = meshRef.current.material as THREE.MeshStandardMaterial;
-        material.color.lerp(targetColor, elasticity);
-        material.emissive.lerp(targetColor, elasticity);
-
-        pointLight2.color.lerp(targetColor, elasticity);
-      }
+      const continuousRotationX = Math.sin(elapsedTime * 0.2) * 0.25;
+      const continuousRotationY = elapsedTime * 0.1;
       
-      if(rendererRef.current && sceneRef.current && cameraRef.current) {
-         rendererRef.current.render(sceneRef.current, cameraRef.current);
-      }
+      mesh.rotation.x += (targetRotation.x + continuousRotationX - mesh.rotation.x) * elasticity;
+      mesh.rotation.y += (targetRotation.y + continuousRotationY - mesh.rotation.y) * elasticity;
+      
+      material.color.lerp(targetColor, elasticity);
+      material.emissive.lerp(targetColor, elasticity);
+      pointLight2.color.lerp(targetColor, elasticity);
+      
+      renderer.render(scene, camera);
     };
     animate();
 
     const handleResize = () => {
-      if (!mountRef.current || !rendererRef.current || !cameraRef.current) return;
-      cameraRef.current.aspect =
-        mountRef.current.clientWidth / mountRef.current.clientHeight;
-      cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(
-        mountRef.current.clientWidth,
-        mountRef.current.clientHeight
-      );
+      if (!isMounted) return;
+      camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
     window.addEventListener("resize", handleResize);
 
@@ -143,22 +126,14 @@ const ThreeScene = ({ className }: { className?: string }) => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
       
-      if (rendererRef.current) {
-        if (mountRef.current) {
-            mountRef.current.removeChild(rendererRef.current.domElement);
-        }
-        rendererRef.current.dispose();
+      if (renderer.domElement) {
+        currentMount.removeChild(renderer.domElement);
       }
 
-      if (meshRef.current) {
-        (meshRef.current.material as THREE.Material).dispose();
-      }
+      // Dispose of Three.js objects
+      material.dispose();
       geometries.forEach(g => g.dispose());
-
-      sceneRef.current = null;
-      cameraRef.current = null;
-      rendererRef.current = null;
-      meshRef.current = null;
+      renderer.dispose();
     };
   }, []);
 
