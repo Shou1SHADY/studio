@@ -3,6 +3,7 @@
 import { useLanguage } from "@/hooks/use-language";
 import { Box, Layers, Package, MousePointerClick } from "lucide-react";
 import React from "react";
+import { AnimatedServiceCard } from "@/components/animated-service-card";
 
 const services = [
   {
@@ -41,18 +42,14 @@ export const ServicesSection = () => {
         </p>
       </div>
       <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
-        {services.map((service, index) => {
-          const Icon = service.icon;
-          return (
-            <div key={index} className="flex flex-col items-center text-center p-6 border border-border/50 rounded-lg hover:bg-accent transition-colors">
-              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Icon className="h-8 w-8" />
-              </div>
-              <h3 className="mb-2 font-headline text-xl font-bold">{t(service.titleKey)}</h3>
-              <p className="text-muted-foreground">{t(service.descriptionKey)}</p>
-            </div>
-          );
-        })}
+        {services.map((service, index) => (
+          <AnimatedServiceCard
+            key={index}
+            service={service}
+            index={index}
+            t={t}
+          />
+        ))}
       </div>
     </section>
   );
