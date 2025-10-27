@@ -13,6 +13,10 @@ export const HeroSection = () => {
       text: t("story_frame_1_text"),
     },
     {
+      title: t("story_frame_4_title"),
+      text: t("story_frame_4_text"),
+    },
+    {
       title: t("story_frame_2_title"),
       text: t("story_frame_2_text"),
     },

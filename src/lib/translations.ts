@@ -17,6 +17,8 @@ const translations = {
     story_frame_2_text: "This is where the magic happens. The shaped model undergoes digital texturing and rendering, a process that forges a strong visual identity, giving the product its final look, feel, and life-like detail.",
     story_frame_3_title: "Refinement and Final Polish",
     story_frame_3_text: "The final step is a meticulous process of refinement. We add the final polish, ensuring every detail aligns with the vision, resulting in a product that's ready for the real world.",
+    story_frame_4_title: "Sculpting the Vision",
+    story_frame_4_text: "Our digital artists meticulously sculpt the initial form, defining the core structure and silhouette. This foundational stage is where the idea first takes a tangible, three-dimensional shape.",
     
     // Portfolio
     portfolio_title: "Our Portfolio",
@@ -55,6 +57,8 @@ const translations = {
     story_frame_2_text: "هنا يحدث السحر. يخضع النموذج المشكل لعملية الإكساء والتصيير الرقمي، وهي عملية تشكل هوية بصرية قوية، مما يمنح المنتج مظهره النهائي وملمسه وتفاصيله النابضة بالحياة.",
     story_frame_3_title: "التنقيح واللمسة النهائية",
     story_frame_3_text: "الخطوة الأخيرة هي عملية تنقيح دقيقة. نضيف اللمسة النهائية، مع التأكد من أن كل التفاصيل تتماشى مع الرؤية، مما ينتج عنه منتج جاهز للعالم الحقيقي.",
+    story_frame_4_title: "نحت الرؤية",
+    story_frame_4_text: "ينحت فنانونا الرقميون بدقة الشكل الأولي، ويحددون الهيكل الأساسي والشكل العام. هذه المرحلة التأسيسية هي حيث تتخذ الفكرة شكلاً ملموسًا ثلاثي الأبعاد لأول مرة.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
