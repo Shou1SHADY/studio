@@ -1,6 +1,7 @@
+
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
@@ -22,8 +23,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
   const meshRef = useRef<THREE.Mesh | null>(null);
   const targetRotation = useRef({ x: 0, y: 0 }).current;
   const targetColor = useRef(new THREE.Color(0x87CEFA)).current;
-  // State to track if a scroll event has happened
-  const [isScrolled, setIsScrolled] = useState(false);
+  const initialScrollFired = useRef(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -76,8 +76,8 @@ const ThreeScene = ({ className }: { className?: string }) => {
     const elasticity = 0.05;
 
     function onScroll() {
-      if (!isScrolled) {
-        setIsScrolled(true);
+      if (!initialScrollFired.current) {
+        initialScrollFired.current = true;
       }
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -100,17 +100,14 @@ const ThreeScene = ({ className }: { className?: string }) => {
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     
-    // Initial call after a short delay
-    const timer = setTimeout(() => onScroll(), 100);
-    
     // Animation loop
     let animationFrameId: number;
     const clock = new THREE.Clock();
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Force scroll update if no scroll event has been detected
-      if (!isScrolled) {
+      // If no scroll event has happened but the page is scrolled, fire it once.
+      if (!initialScrollFired.current && window.scrollY > 0) {
         onScroll();
       }
 
@@ -157,7 +154,6 @@ const ThreeScene = ({ className }: { className?: string }) => {
     // Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
-      clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
       
@@ -172,13 +168,12 @@ const ThreeScene = ({ className }: { className?: string }) => {
         rendererRef.current.dispose();
       }
 
-      // Explicitly nullify refs to ensure a clean state on remount
       sceneRef.current = null;
       cameraRef.current = null;
       rendererRef.current = null;
       meshRef.current = null;
     };
-  }, [isScrolled]); // Rerun effect if isScrolled changes
+  }, []);
 
   return <div ref={mountRef} className={cn("w-full h-full", className)} />;
 };
