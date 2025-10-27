@@ -38,7 +38,7 @@ export const HeroSection = () => {
       {/* Scrolling Content */}
       <div className="relative z-10 -mt-[100vh]">
         {/* Initial Frame */}
-        <div className="container flex h-screen items-center justify-center text-center">
+        <div className="container flex h-screen items-center justify-center text-center px-4">
           <div>
             <h1
               className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl"
@@ -58,7 +58,7 @@ export const HeroSection = () => {
             key={index}
             className="flex h-screen items-center justify-center"
           >
-            <div className="container max-w-2xl text-center">
+            <div className="container max-w-2xl text-center px-4">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 {frame.title}
               </h2>
