@@ -5,10 +5,10 @@ import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
 const geometries = [
-  new THREE.TorusKnotGeometry(1.2, 0.35, 200, 32),
-  new THREE.IcosahedronGeometry(1.8),
-  new THREE.TorusGeometry(1.4, 0.4, 32, 100),
-  new THREE.ConeGeometry(1.5, 2, 64),
+  new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32), // Increased size
+  new THREE.IcosahedronGeometry(2.2), // Increased size
+  new THREE.TorusGeometry(1.8, 0.5, 32, 100), // Increased size
+  new THREE.ConeGeometry(1.9, 2.5, 64), // Increased size
 ];
 
 const colors = [
@@ -61,7 +61,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
     const mesh = new THREE.Mesh(geometries[0], material);
     meshRef.current = mesh;
     scene.add(mesh);
-    camera.position.z = 5;
+    camera.position.z = 4.5; // Moved camera closer
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
