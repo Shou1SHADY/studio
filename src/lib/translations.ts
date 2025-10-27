@@ -20,6 +20,22 @@ const translations = {
     story_frame_4_title: "Sculpting the Vision",
     story_frame_4_text: "Our digital artists meticulously sculpt the initial form, defining the core structure and silhouette. This foundational stage is where the idea first takes a tangible, three-dimensional shape.",
     
+    // Services
+    services_title: "Our Expertise",
+    services_subtitle: "We turn complex ideas into stunning visual realities. Explore our core services designed to elevate your brand and product.",
+    service_3d_modeling_title: "3D Modeling",
+    service_3d_modeling_description: "Creating intricate and high-quality 3D models for any purpose, from product visualization to game assets.",
+    service_animation_title: "Animation",
+    service_animation_description: "Bringing stories and characters to life with fluid, dynamic, and engaging animations.",
+    service_motion_graphics_title: "Motion Graphics",
+    service_motion_graphics_description: "Enhancing brand stories with captivating motion graphics for web, video, and social media.",
+    service_architecture_title: "Architectural Visualization",
+    service_architecture_description: "Transforming architectural plans into photorealistic 3D renderings and immersive walkthroughs.",
+    service_product_design_title: "Product Design",
+    service_product_design_description: "From concept to final render, we design and visualize products that are both beautiful and functional.",
+    service_interactive_title: "Interactive Experiences",
+    service_interactive_description: "Building immersive real-time 3D experiences for web and virtual reality platforms.",
+
     // Portfolio
     portfolio_title: "Our Portfolio",
     portfolio_subtitle: "A glimpse into the worlds we've created.",
@@ -59,6 +75,22 @@ const translations = {
     story_frame_3_text: "الخطوة الأخيرة هي عملية تنقيح دقيقة. نضيف اللمسة النهائية، مع التأكد من أن كل التفاصيل تتماشى مع الرؤية، مما ينتج عنه منتج جاهز للعالم الحقيقي.",
     story_frame_4_title: "نحت الرؤية",
     story_frame_4_text: "ينحت فنانونا الرقميون بدقة الشكل الأولي، ويحددون الهيكل الأساسي والشكل العام. هذه المرحلة التأسيسية هي حيث تتخذ الفكرة شكلاً ملموسًا ثلاثي الأبعاد لأول مرة.",
+
+    // Services
+    services_title: "خبراتنا",
+    services_subtitle: "نحول الأفكار المعقدة إلى حقائق بصرية مذهلة. استكشف خدماتنا الأساسية المصممة للارتقاء بعلامتك التجارية ومنتجك.",
+    service_3d_modeling_title: "النمذجة ثلاثية الأبعاد",
+    service_3d_modeling_description: "إنشاء نماذج ثلاثية الأبعاد معقدة وعالية الجودة لأي غرض، من تصور المنتج إلى أصول الألعاب.",
+    service_animation_title: "الرسوم المتحركة",
+    service_animation_description: "إضفاء الحياة على القصص والشخصيات من خلال رسوم متحركة سلسة وديناميكية وجذابة.",
+    service_motion_graphics_title: "الرسوم المتحركة",
+    service_motion_graphics_description: "تعزيز قصص العلامة التجارية برسوم متحركة جذابة للويب والفيديو ووسائل التواصل الاجتماعي.",
+    service_architecture_title: "التصور المعماري",
+    service_architecture_description: "تحويل المخططات المعمارية إلى عروض ثلاثية الأبعاد واقعية وجولات افتراضية غامرة.",
+    service_product_design_title: "تصميم المنتج",
+    service_product_design_description: "من المفهوم إلى العرض النهائي، نقوم بتصميم وتصور منتجات جميلة وعملية.",
+    service_interactive_title: "التجارب التفاعلية",
+    service_interactive_description: "بناء تجارب ثلاثية الأبعاد غامرة في الوقت الفعلي للويب ومنصات الواقع الافتراضي.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
