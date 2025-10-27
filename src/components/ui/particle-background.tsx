@@ -38,10 +38,10 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
+          radius: Math.random() * 2 + 1, // Increased size
           vx: (Math.random() - 0.5) * 0.3,
           vy: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.2,
+          opacity: Math.random() * 0.6 + 0.4, // Increased opacity
         });
       }
     };
@@ -75,10 +75,11 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
           p.vy += forceDirectionY * force * 0.1;
         }
 
-        // Draw particle
+        // Draw particle - Using HSL for more vibrant color control
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(138, 43, 226, ${p.opacity})`;
+        // HSL(262, 83%, 58%) is the HSL equivalent of the primary color
+        ctx.fillStyle = `hsla(262, 83%, 58%, ${p.opacity})`;
         ctx.fill();
       });
 
@@ -92,8 +93,9 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(138, 43, 226, ${1 - dist / 120})`;
-            ctx.lineWidth = 0.3;
+            // Increased line opacity
+            ctx.strokeStyle = `hsla(262, 83%, 58%, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.5; // Slightly thicker lines
             ctx.stroke();
           }
         }
