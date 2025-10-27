@@ -1,3 +1,4 @@
+
 const translations = {
   en: {
     // Header
@@ -10,14 +11,14 @@ const translations = {
     hero_headline: "Elastic Canvas: Bringing Ideas to Life with 3D Magic",
     hero_subheadline: "Scroll down to begin our story.",
     hero_cta: "Explore Our Work",
-    story_frame_1_title: "The Spark of Creation",
-    story_frame_1_text: "Every project begins with a single idea. We take that spark and shape it into a tangible concept, exploring its form and potential.",
-    story_frame_2_title: "Forging Dimensions",
-    story_frame_2_text: "Our digital artists and engineers collaborate to build the world around your idea, adding depth, texture, and life.",
-    story_frame_3_title: "Polishing the Dream",
-    story_frame_3_text: "We refine every detail, ensuring the final product is not just a model, but a masterpiece of motion and light.",
-    story_frame_4_title: "Your Vision, Realized",
-    story_frame_4_text: "From concept to completion, we stretch the canvas of possibility to deliver a final product that is beyond imagination.",
+    story_frame_1_title: "From Raw Material to Malleable Compound",
+    story_frame_1_text: "Our journey begins with raw natural rubber. We meticulously blend it with specialized additives, transforming it into a robust, malleable compound ready for creation.",
+    story_frame_2_title: "Precision Molding and Shaping",
+    story_frame_2_text: "The compounded rubber is heated and injected into high-precision molds. Here, under intense pressure, it takes the exact form of your design, from the simplest seal to the most complex component.",
+    story_frame_3_title: "The Art of Curing and Vulcanization",
+    story_frame_3_text: "This is where the magic happens. The shaped rubber undergoes vulcanization, a process that forges strong cross-links between polymer chains, giving the product its final strength, elasticity, and durability.",
+    story_frame_4_title: "Finishing and Quality Assurance",
+    story_frame_4_text: "Each piece is carefully inspected, trimmed, and finished to perfection. Our commitment to quality ensures that every product leaving our facility is a testament to precision engineering and lasting performance.",
 
 
     // Portfolio
@@ -51,14 +52,14 @@ const translations = {
     hero_headline: "إلاستيك كانفاس: نحول الأفكار إلى حياة بسحر ثلاثي الأبعاد",
     hero_subheadline: "مرر لأسفل لتبدأ قصتنا.",
     hero_cta: "اكتشف أعمالنا",
-    story_frame_1_title: "شرارة الإبداع",
-    story_frame_1_text: "كل مشروع يبدأ بفكرة واحدة. نأخذ تلك الشرارة ونشكلها في مفهوم ملموس، مستكشفين شكلها وإمكانياتها.",
-    story_frame_2_title: "صياغة الأبعاد",
-    story_frame_2_text: "يتعاون فنانونا ومهندسونا الرقميون لبناء العالم حول فكرتك، مضيفين العمق والملمس والحياة.",
-    story_frame_3_title: "صقل الحلم",
-    story_frame_3_text: "نحن نصقل كل التفاصيل، ونضمن أن المنتج النهائي ليس مجرد نموذج، بل تحفة فنية من الحركة والضوء.",
-    story_frame_4_title: "رؤيتك، متحققة",
-    story_frame_4_text: "من المفهوم إلى الإنجاز، نوسع قماش الإمكانية لتقديم منتج نهائي يفوق الخيال.",
+    story_frame_1_title: "من المادة الخام إلى مركب مرن",
+    story_frame_1_text: "تبدأ رحلتنا بالمطاط الطبيعي الخام. نمزجه بدقة مع إضافات متخصصة، محولينه إلى مركب قوي ومرن جاهز للتشكيل.",
+    story_frame_2_title: "القولبة والتشكيل الدقيق",
+    story_frame_2_text: "يتم تسخين المطاط المركب وحقنه في قوالب عالية الدقة. هنا، تحت ضغط شديد، يأخذ شكل تصميمك بالضبط، من أبسط الأختام إلى أكثر المكونات تعقيدًا.",
+    story_frame_3_title: "فن المعالجة والفلكنة",
+    story_frame_3_text: "هنا يحدث السحر. يخضع المطاط المشكل لعملية الفلكنة، وهي عملية تنشئ روابط قوية بين سلاسل البوليمر، مما يمنح المنتج قوته النهائية ومرونته ومتانته.",
+    story_frame_4_title: "التشطيب وضمان الجودة",
+    story_frame_4_text: "يتم فحص كل قطعة بعناية وتشذيبها وتشطيبها بإتقان. إن التزامنا بالجودة يضمن أن كل منتج يغادر منشأتنا هو شهادة على الهندسة الدقيقة والأداء الدائم.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
