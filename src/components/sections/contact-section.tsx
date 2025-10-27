@@ -73,8 +73,8 @@ export function ContactSection() {
   }, [state, t, toast, form]);
 
   return (
-    <section id="contact" className="py-20 sm:py-32 bg-background/50">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="py-20 sm:py-32">
+      <div className="container">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             {t("contact_title")}
@@ -83,7 +83,7 @@ export function ContactSection() {
             {t("contact_subtitle")}
           </p>
         </div>
-        <div className="mt-12">
+        <div className="mt-12 max-w-4xl mx-auto">
           <Form {...form}>
             <form action={formAction} className="space-y-8">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
