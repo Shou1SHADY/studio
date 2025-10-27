@@ -33,15 +33,16 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
 
     const initParticles = () => {
       particles = [];
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+      // Increased particle density
+      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1, // Increased size
+          radius: Math.random() * 2.5 + 1.5, // Increased size
           vx: (Math.random() - 0.5) * 0.3,
           vy: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.6 + 0.4, // Increased opacity
+          opacity: Math.random() * 0.5 + 0.5, // Consistently higher opacity
         });
       }
     };
@@ -75,11 +76,11 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
           p.vy += forceDirectionY * force * 0.1;
         }
 
-        // Draw particle - Using HSL for more vibrant color control
+        // Draw particle - Using a more consistent and obvious purple
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        // HSL(262, 83%, 58%) is the HSL equivalent of the primary color
-        ctx.fillStyle = `hsla(262, 83%, 58%, ${p.opacity})`;
+        // Using a solid, vibrant color for all particles
+        ctx.fillStyle = `hsl(262, 83%, 70%)`;
         ctx.fill();
       });
 
@@ -93,9 +94,9 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            // Increased line opacity
-            ctx.strokeStyle = `hsla(262, 83%, 58%, ${1 - dist / 120})`;
-            ctx.lineWidth = 0.5; // Slightly thicker lines
+            // More obvious lines
+            ctx.strokeStyle = `hsla(262, 83%, 70%, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.7; // Thicker lines
             ctx.stroke();
           }
         }
