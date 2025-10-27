@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-[80vh] items-center justify-center">
+    <div className="container flex min-h-[80vh] items-center justify-center">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl font-headline">Admin Login</CardTitle>

@@ -39,7 +39,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Header />
           <main className="flex-grow">
-            <div className="container">{children}</div>
+            {children}
           </main>
           <Footer />
           <Toaster />
