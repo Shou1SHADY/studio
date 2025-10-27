@@ -76,18 +76,16 @@ const ThreeScene = ({ className }: { className?: string }) => {
     function onScroll() {
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollY / scrollHeight;
+      
+      // There are 5 frames total (1 hero + 4 story)
+      const totalFrames = 5; 
+      
+      // Change geometry after the third frame (index 2)
+      const chapterIndex = (scrollY / scrollHeight) > (2.5 / totalFrames) ? 1 : 0;
 
       // Update rotation based on scroll
-      const rotationFactor = 6;
       targetRotation.y = scrollY * 0.002;
       targetRotation.x = scrollY * 0.001;
-
-      // Update geometry and color
-      const chapterCount = 4; // Total number of story frames
-      const chapterHeight = scrollHeight / chapterCount;
-      // Change geometry after the second frame
-      const chapterIndex = scrollY > chapterHeight * 2 ? 1 : 0;
       
       if (meshRef.current && meshRef.current.geometry !== geometries[chapterIndex]) {
         meshRef.current.geometry.dispose();
