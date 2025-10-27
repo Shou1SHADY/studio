@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/hooks/use-language";
-import { Box, Film, Layers, Building, Package, MousePointerClick } from "lucide-react";
+import { Box, Building, Layers, Package, MousePointerClick, AppWindow } from "lucide-react";
 import React from "react";
 
 const services = [
@@ -11,7 +11,7 @@ const services = [
     descriptionKey: "service_3d_modeling_description",
   },
   {
-    icon: Film,
+    icon: Building,
     titleKey: "service_animation_title",
     descriptionKey: "service_animation_description",
   },
@@ -21,7 +21,7 @@ const services = [
     descriptionKey: "service_motion_graphics_description",
   },
   {
-    icon: Building,
+    icon: AppWindow,
     titleKey: "service_architecture_title",
     descriptionKey: "service_architecture_description",
   },
@@ -41,7 +41,7 @@ export const ServicesSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services">
+    <section id="services" className="container mx-auto">
       <div className="text-center">
         <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           {t("services_title")}
