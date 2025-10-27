@@ -10,9 +10,9 @@ export const Header = () => {
   const { t, toggleLanguage, language, direction } = useLanguage();
 
   const navLinks = [
-    { href: "#home", label: t("nav_home") },
-    { href: "#portfolio", label: t("nav_portfolio") },
-    { href: "#contact", label: t("nav_contact") },
+    { href: "/", label: t("nav_home") },
+    { href: "/portfolio", label: t("nav_portfolio") },
+    { href: "/contact", label: t("nav_contact") },
   ];
 
   return (
