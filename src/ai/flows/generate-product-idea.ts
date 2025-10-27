@@ -13,9 +13,6 @@ import {
   GenerateProductIdeaOutputSchema,
 } from '@/lib/schemas';
 import {z} from 'zod';
-import { config } from 'dotenv';
-
-config();
 
 export type GenerateProductIdeaInput = z.infer<
   typeof GenerateProductIdeaInputSchema
@@ -30,18 +27,15 @@ export async function generateProductIdea(
   return generateProductIdeaFlow(input);
 }
 
-const generateProductIdeaFlow = ai.defineFlow(
-  {
-    name: 'generateProductIdeaFlow',
-    inputSchema: GenerateProductIdeaInputSchema,
-    outputSchema: GenerateProductIdeaOutputSchema,
-  },
-  async input => {
-    const prompt = `You are an expert product designer and branding specialist at a company called Elastic Canvas that makes custom physical products like rubber keychains and embroidered patches.
+const generateProductIdeaPrompt = ai.definePrompt({
+  name: 'generateProductIdeaPrompt',
+  input: {schema: GenerateProductIdeaInputSchema},
+  output: {schema: GenerateProductIdeaOutputSchema},
+  prompt: `You are an expert product designer and branding specialist at a company called Elastic Canvas that makes custom physical products like rubber keychains and embroidered patches.
 
 A user has submitted a product idea. Your task is to flesh it out into a more complete concept.
 
-User's Idea: ${input.description}
+User's Idea: {{{description}}}
 
 Based on the user's idea, generate the following:
 1.  A catchy and creative product name.
@@ -50,49 +44,20 @@ Based on the user's idea, generate the following:
 4.  A list of suggested materials suitable for manufacturing (e.g., "Vibrant PVC Rubber", "High-Quality Embroidered Fabric").
 
 Keep the tone enthusiastic, creative, and professional.
+`,
+});
 
-Return the result as a valid JSON object that conforms to the following schema:
-{
-  "name": "string",
-  "detailedDescription": "string",
-  "features": ["string"],
-  "materials": ["string"]
-}
-`;
-
-    const response = await fetch(
-      'https://openrouter.ai/api/v1/chat/completions',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'mistralai/mistral-7b-instruct:free',
-          messages: [{role: 'user', content: prompt}],
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(
-        `OpenRouter API request failed: ${response.status} ${response.statusText} - ${errorText}`
-      );
+const generateProductIdeaFlow = ai.defineFlow(
+  {
+    name: 'generateProductIdeaFlow',
+    inputSchema: GenerateProductIdeaInputSchema,
+    outputSchema: GenerateProductIdeaOutputSchema,
+  },
+  async input => {
+    const {output} = await generateProductIdeaPrompt(input);
+    if (!output) {
+      throw new Error('Failed to generate product idea. The AI returned an empty response.');
     }
-
-    const data = await response.json();
-    const jsonString = data.choices[0].message.content;
-
-    try {
-      // The model might return a string that is a JSON object. We need to parse it.
-      const parsedOutput = JSON.parse(jsonString);
-      // Validate the parsed object against our schema
-      return GenerateProductIdeaOutputSchema.parse(parsedOutput);
-    } catch (e) {
-      console.error('Failed to parse AI response:', e);
-      throw new Error('The AI returned an invalid response format.');
-    }
+    return output;
   }
 );
