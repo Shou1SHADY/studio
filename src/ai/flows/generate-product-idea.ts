@@ -31,30 +31,10 @@ const generateProductIdeaPrompt = ai.definePrompt({
   name: 'generateProductIdeaPrompt',
   input: {schema: GenerateProductIdeaInputSchema},
   output: {schema: GenerateProductIdeaOutputSchema},
-  prompt: `You are an expert product designer and branding specialist at a company called Elastic Canvas that makes custom physical products like rubber keychains and embroidered patches.
-
-A user has submitted a product idea. Your task is to flesh it out into a more complete concept.
-
-User's Idea: {{{description}}}
-
-Based on the user's idea, generate a markdown-formatted response with the following sections:
-- **Name**: A catchy and creative product name.
-- **Description**: A detailed and engaging description that brings the product to life.
-- **Features**: A bulleted list of 3-5 key features.
-- **Materials**: A bulleted list of suggested materials suitable for manufacturing (e.g., "Vibrant PVC Rubber", "High-Quality Embroidered Fabric").
-
-Keep the tone enthusiastic, creative, and professional.
-
-Example format:
-**Name**: Supernova Fox Keychain
-**Description**: A keychain of a fox...
-**Features**:
-* Feature 1
-* Feature 2
-**Materials**:
-* Material 1
-* Material 2
-`,
+  prompt: `You are an expert product designer. A user has an idea. Flesh it out into a concept.
+  Keep it short and simple.
+  User's Idea: {{{description}}}
+  `,
 });
 
 const generateProductIdeaFlow = ai.defineFlow(
