@@ -15,7 +15,7 @@ export function ProductShowcaseSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/10">
              <Image
-              src="https://storage.googleapis.com/stedi-assets/elastic-canvas/bosch-keychain.png"
+              src="https://picsum.photos/seed/keychain/800/800"
               alt="Custom drill keychain"
               fill
               className="object-contain"
