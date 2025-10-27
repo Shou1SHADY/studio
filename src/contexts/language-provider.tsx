@@ -1,6 +1,8 @@
+
 "use client";
 
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useCallback, ReactNode } from "react";
+import translations from "@/lib/translations";
 
 export type Language = "en" | "ar";
 export type Direction = "ltr" | "rtl";
@@ -17,10 +19,8 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 interface LanguageProviderProps {
-  children: (language: Language, direction: Direction) => React.ReactNode;
+  children: ReactNode;
 }
-
-import translations from "@/lib/translations";
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
@@ -32,6 +32,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     setLanguage((prevLang) => {
       const newLang = prevLang === "en" ? "ar" : "en";
       setDirection(newLang === "ar" ? "rtl" : "ltr");
+      // Set the dir attribute on the html element
+      if (typeof window !== 'undefined') {
+        document.documentElement.lang = newLang;
+        document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+      }
       return newLang;
     });
   }, []);
@@ -52,7 +57,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   return (
     <LanguageContext.Provider value={contextValue}>
-      {children(language, direction)}
+      {children}
     </LanguageContext.Provider>
   );
 };
