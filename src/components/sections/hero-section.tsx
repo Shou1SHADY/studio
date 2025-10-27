@@ -16,6 +16,10 @@ export const HeroSection = () => {
       title: t("story_frame_2_title"),
       text: t("story_frame_2_text"),
     },
+    {
+      title: t("story_frame_3_title"),
+      text: t("story_frame_3_text"),
+    },
   ];
 
   return (

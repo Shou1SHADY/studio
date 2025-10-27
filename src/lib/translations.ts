@@ -15,6 +15,8 @@ const translations = {
     story_frame_1_text: "Every creation begins with a spark. We take your raw concept and transform it into a robust, malleable digital compound, ready for our artists to shape and mold in virtual space.",
     story_frame_2_title: "The Magic of Texturing and Rendering",
     story_frame_2_text: "This is where the magic happens. The shaped model undergoes digital texturing and rendering, a process that forges a strong visual identity, giving the product its final look, feel, and life-like detail.",
+    story_frame_3_title: "Refinement and Final Polish",
+    story_frame_3_text: "The final step is a meticulous process of refinement. We add the final polish, ensuring every detail aligns with the vision, resulting in a product that's ready for the real world.",
     
     // Portfolio
     portfolio_title: "Our Portfolio",
@@ -51,6 +53,8 @@ const translations = {
     story_frame_1_text: "كل إبداع يبدأ بشرارة. نأخذ مفهومك الخام ونحوله إلى مركب رقمي قوي ومرن، جاهز لفنانينا لتشكيله في الفضاء الافتراضي.",
     story_frame_2_title: "سحر الإكساء والتصيير",
     story_frame_2_text: "هنا يحدث السحر. يخضع النموذج المشكل لعملية الإكساء والتصيير الرقمي، وهي عملية تشكل هوية بصرية قوية، مما يمنح المنتج مظهره النهائي وملمسه وتفاصيله النابضة بالحياة.",
+    story_frame_3_title: "التنقيح واللمسة النهائية",
+    story_frame_3_text: "الخطوة الأخيرة هي عملية تنقيح دقيقة. نضيف اللمسة النهائية، مع التأكد من أن كل التفاصيل تتماشى مع الرؤية، مما ينتج عنه منتج جاهز للعالم الحقيقي.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
