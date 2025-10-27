@@ -23,7 +23,7 @@ export const PortfolioSection = () => {
             {t("portfolio_subtitle")}
           </p>
         </div>
-        <div className="mt-12 grid max-w-5xl mx-auto grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 mx-auto max-w-5xl grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {PlaceHolderImages.map((item) => (
             <Link href="#" key={item.id} className="group block">
               <Card
