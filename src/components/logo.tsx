@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export const Logo = ({ className }: { className?: string }) => (
-  <div className={cn("flex items-center gap-2 text-xl font-bold font-headline text-secondary-foreground", className)}>
+  <div className={cn("flex items-center gap-2 text-xl font-bold font-headline", className)}>
     <svg
       width="24"
       height="24"
@@ -15,7 +15,7 @@ export const Logo = ({ className }: { className?: string }) => (
         fill="currentColor"
       />
     </svg>
-    <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+    <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
       Elastic Canvas
     </span>
   </div>

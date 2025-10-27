@@ -5,17 +5,17 @@ import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
 const geometries = [
-  new THREE.TorusKnotGeometry(1, 0.3, 100, 16),
-  new THREE.IcosahedronGeometry(1.5),
-  new THREE.TorusGeometry(1.2, 0.4, 16, 100),
-  new THREE.ConeGeometry(1.2, 1.8, 32),
+  new THREE.TorusKnotGeometry(1.2, 0.35, 200, 32),
+  new THREE.IcosahedronGeometry(1.8),
+  new THREE.TorusGeometry(1.4, 0.4, 32, 100),
+  new THREE.ConeGeometry(1.5, 2, 64),
 ];
 
 const colors = [
-  new THREE.Color(0xff9933), // Neon Orange
-  new THREE.Color(0x7DF9FF), // Electric Blue
-  new THREE.Color(0xFF33FF), // Neon Pink
-  new THREE.Color(0x33FF57), // Neon Green
+  new THREE.Color(0x8A2BE2), // BlueViolet (matches new primary)
+  new THREE.Color(0x00BFFF), // DeepSkyBlue
+  new THREE.Color(0xFF00FF), // Magenta
+  new THREE.Color(0x39FF14), // Neon Green
 ];
 
 const ThreeScene = ({ className }: { className?: string }) => {
@@ -25,7 +25,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const meshRef = useRef<THREE.Mesh | null>(null);
   const targetRotation = useRef({ x: 0, y: 0 }).current;
-  const targetColor = useRef(new THREE.Color(0xff9933)).current;
+  const targetColor = useRef(new THREE.Color(0x8A2BE2)).current;
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -53,8 +53,10 @@ const ThreeScene = ({ className }: { className?: string }) => {
     // Object
     const material = new THREE.MeshStandardMaterial({
       color: colors[0],
-      metalness: 0.7,
-      roughness: 0.3,
+      metalness: 0.8,
+      roughness: 0.1,
+      emissive: colors[0],
+      emissiveIntensity: 0.2,
     });
     const mesh = new THREE.Mesh(geometries[0], material);
     meshRef.current = mesh;
@@ -62,11 +64,15 @@ const ThreeScene = ({ className }: { className?: string }) => {
     camera.position.z = 5;
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0xffffff, 15, 100);
+    const pointLight = new THREE.PointLight(0xffffff, 50, 100);
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0x8A2BE2, 100, 100);
+    pointLight2.position.set(-10, -10, -10);
+    scene.add(pointLight2);
     
     // Scroll animation
     const elasticity = 0.05;
@@ -106,7 +112,11 @@ const ThreeScene = ({ className }: { className?: string }) => {
           (targetRotation.y - meshRef.current.rotation.y) * elasticity;
         
         // Elastic color transition
-        (meshRef.current.material as THREE.MeshStandardMaterial).color.lerp(targetColor, elasticity);
+        const material = meshRef.current.material as THREE.MeshStandardMaterial;
+        material.color.lerp(targetColor, elasticity);
+        material.emissive.lerp(targetColor, elasticity);
+
+        pointLight2.color.lerp(targetColor, elasticity);
       }
       
       if(rendererRef.current && sceneRef.current && cameraRef.current) {
