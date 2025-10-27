@@ -3,6 +3,7 @@ const translations = {
   en: {
     // Header
     nav_home: "Home",
+    nav_services: "Services",
     nav_portfolio: "Portfolio",
     nav_contact: "Contact",
     toggle_language: "AR",
@@ -19,6 +20,10 @@ const translations = {
     story_frame_3_text: "The final product is produced, whether it's injecting vibrant rubber into the mold or stitching the threads for a patch. Each item is inspected to ensure it meets our high-quality standards, ready to be delivered.",
     story_frame_4_title: "The Blueprint",
     story_frame_4_text: "Our artists refine the concept into a production-ready digital file. Every line, color, and dimension is perfected to ensure the final keychain or patch is exactly as you imagined.",
+
+    // Product Showcase
+    product_showcase_title: "Real Products, Realized Potential",
+    product_showcase_text: "We specialize in turning digital designs into tangible, high-quality products. From custom PVC keychains to embroidered patches, our manufacturing process ensures every detail of your vision is brought to life with precision and vibrant color.",
     
     // Services
     services_title: "Our Expertise",
@@ -74,6 +79,7 @@ const translations = {
   ar: {
     // Header
     nav_home: "الرئيسية",
+    nav_services: "خدماتنا",
     nav_portfolio: "أعمالنا",
     nav_contact: "اتصل بنا",
     toggle_language: "EN",
@@ -90,6 +96,10 @@ const translations = {
     story_frame_3_text: "يتم إنتاج المنتج النهائي، سواء كان ذلك عن طريق حقن المطاط النابض بالحياة في القالب أو خياطة الخيوط للرقعة. يتم فحص كل عنصر للتأكد من أنه يفي بمعايير الجودة العالية لدينا، وجاهز للتسليم.",
     story_frame_4_title: "المخطط",
     story_frame_4_text: "يقوم فنانونا بتنقيح المفهوم إلى ملف رقمي جاهز للإنتاج. يتم إتقان كل خط ولون وبعد للتأكد من أن سلسلة المفاتيح أو الرقعة النهائية هي بالضبط كما تخيلتها.",
+    
+    // Product Showcase
+    product_showcase_title: "منتجات حقيقية، إمكانيات محققة",
+    product_showcase_text: "نحن متخصصون في تحويل التصاميم الرقمية إلى منتجات ملموسة وعالية الجودة. من سلاسل مفاتيح PVC المخصصة إلى الرقع المطرزة، تضمن عملية التصنيع لدينا أن كل تفاصيل رؤيتك تنبض بالحياة بدقة وألوان نابضة بالحياة.",
 
     // Services
     services_title: "خبراتنا",
