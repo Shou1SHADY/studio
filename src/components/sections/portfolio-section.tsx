@@ -14,7 +14,7 @@ export const PortfolioSection = () => {
 
   return (
     <section id="portfolio" className="py-20 sm:py-32">
-      <div className="container">
+      <div className="container px-4 md:px-6">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             {t("portfolio_title")}
@@ -23,7 +23,7 @@ export const PortfolioSection = () => {
             {t("portfolio_subtitle")}
           </p>
         </div>
-        <div className="mt-12 mx-auto max-w-5xl grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {PlaceHolderImages.map((item) => (
             <Link href="#" key={item.id} className="group block">
               <Card
