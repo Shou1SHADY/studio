@@ -94,7 +94,9 @@ const ThreeScene = ({ className }: { className?: string }) => {
       targetColor.copy(colors[chapterIndex]);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // Initial call
+    
+    // Initial call after a short delay to allow browser to restore scroll
+    const timer = setTimeout(() => onScroll(), 100);
     
     // Animation loop
     const clock = new THREE.Clock();
@@ -143,6 +145,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
 
     // Cleanup
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
       if (mountRef.current && rendererRef.current) {
