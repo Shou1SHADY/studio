@@ -8,7 +8,6 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {googleAI} from '@genkit-ai/google-genai';
 import {
   GenerateProductIdeaInputSchema,
   GenerateProductIdeaOutputSchema,
@@ -28,17 +27,6 @@ export async function generateProductIdea(
   return generateProductIdeaFlow(input);
 }
 
-const generateProductIdeaPrompt = ai.definePrompt({
-  name: 'generateProductIdeaPrompt',
-  input: {schema: GenerateProductIdeaInputSchema},
-  output: {schema: GenerateProductIdeaOutputSchema},
-  model: googleAI.model('gemini-1.5-flash-latest'),
-  prompt: `You are an expert product designer. A user has an idea. Flesh it out into a concept.
-  Keep it short and simple.
-  User's Idea: {{{description}}}
-  `,
-});
-
 const generateProductIdeaFlow = ai.defineFlow(
   {
     name: 'generateProductIdeaFlow',
@@ -46,10 +34,33 @@ const generateProductIdeaFlow = ai.defineFlow(
     outputSchema: GenerateProductIdeaOutputSchema,
   },
   async input => {
-    const {output} = await generateProductIdeaPrompt(input);
-    if (!output) {
-      throw new Error('Failed to generate product idea. The AI returned an empty response.');
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "model": "mistralai/mistral-7b-instruct:free",
+        "messages": [
+          { "role": "system", "content": "You are an expert product designer. A user has an idea. Flesh it out into a concept. Keep it short and simple." },
+          { "role": "user", "content": `User's Idea: ${input.description}` }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error("OpenRouter API Error:", errorBody);
+      throw new Error(`OpenRouter API request failed with status ${response.status}: ${errorBody}`);
     }
-    return output;
+
+    const result = await response.json();
+    
+    if (result.choices && result.choices.length > 0 && result.choices[0].message.content) {
+      return result.choices[0].message.content;
+    }
+
+    throw new Error('Failed to generate product idea. The AI returned an empty response.');
   }
 );
