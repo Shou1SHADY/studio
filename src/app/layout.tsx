@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { ParticleBackground } from "@/components/ui/particle-background";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
           "font-body antialiased min-h-screen flex flex-col"
         )}
       >
+        <ParticleBackground className="fixed top-0 left-0 w-full h-full z-[-1]" />
         <LanguageProvider>
           <Header />
           <main className="flex-grow">
