@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +22,8 @@ const ThreeScene = ({ className }: { className?: string }) => {
   const meshRef = useRef<THREE.Mesh | null>(null);
   const targetRotation = useRef({ x: 0, y: 0 }).current;
   const targetColor = useRef(new THREE.Color(0x87CEFA)).current;
+  // State to track if a scroll event has happened
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -74,6 +76,9 @@ const ThreeScene = ({ className }: { className?: string }) => {
     const elasticity = 0.05;
 
     function onScroll() {
+      if (!isScrolled) {
+        setIsScrolled(true);
+      }
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       
@@ -95,7 +100,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     
-    // Initial call after a short delay to allow browser to restore scroll
+    // Initial call after a short delay
     const timer = setTimeout(() => onScroll(), 100);
     
     // Animation loop
@@ -103,6 +108,11 @@ const ThreeScene = ({ className }: { className?: string }) => {
     const clock = new THREE.Clock();
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+
+      // Force scroll update if no scroll event has been detected
+      if (!isScrolled) {
+        onScroll();
+      }
 
       if (meshRef.current) {
         const elapsedTime = clock.getElapsedTime();
@@ -168,7 +178,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
       rendererRef.current = null;
       meshRef.current = null;
     };
-  }, []);
+  }, [isScrolled]); // Rerun effect if isScrolled changes
 
   return <div ref={mountRef} className={cn("w-full h-full", className)} />;
 };
