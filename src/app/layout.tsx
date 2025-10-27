@@ -40,7 +40,7 @@ export default function RootLayout({
         <ParticleBackground className="fixed top-0 left-0 w-full h-full z-[-1]" />
         <LanguageProvider>
           <Header />
-          <main className="flex-grow w-full flex flex-col items-center">
+          <main className="flex-grow w-full">
             {children}
           </main>
           <Footer />
