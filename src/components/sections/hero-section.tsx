@@ -39,18 +39,16 @@ export const HeroSection = () => {
       <div className="relative z-10 -mt-[100vh]">
         {/* Initial Frame */}
         <div className="container flex h-screen items-center justify-center text-center px-4">
-          <div className="flex justify-center items-center">
-            <div>
-              <h1
-                className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
-                style={{ textShadow: "0 2px 10px hsl(var(--background))" }}
-              >
-                {t("hero_headline")}
-              </h1>
-              <p className="mt-6 max-w-2xl mx-auto text-lg text-secondary-foreground md:text-xl">
-                {t("hero_subheadline")}
-              </p>
-            </div>
+          <div className="max-w-3xl">
+            <h1
+              className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+              style={{ textShadow: "0 2px 10px hsl(var(--background))" }}
+            >
+              {t("hero_headline")}
+            </h1>
+            <p className="mt-6 max-w-2xl mx-auto text-base text-secondary-foreground md:text-xl">
+              {t("hero_subheadline")}
+            </p>
           </div>
         </div>
 
@@ -64,7 +62,7 @@ export const HeroSection = () => {
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 {frame.title}
               </h2>
-              <p className="mt-4 text-secondary-foreground md:text-xl">
+              <p className="mt-4 text-secondary-foreground md:text-lg">
                 {frame.text}
               </p>
             </div>

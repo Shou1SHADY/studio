@@ -39,6 +39,7 @@ const translations = {
     // Contact
     contact_title: "Get in Touch",
     contact_subtitle: "Have a project in mind? Let's talk about it.",
+    contact_our_studio: "Our Studio",
     contact_name_label: "Name",
     contact_name_placeholder: "Your full name",
     contact_email_label: "Email",
@@ -46,8 +47,26 @@ const translations = {
     contact_message_label: "Message",
     contact_message_placeholder: "Tell us about your project...",
     contact_submit_button: "Send Message",
-    contact_submit_success: "Thank you! Your message has been sent.",
-    contact_submit_error: "Something went wrong. Please try again.",
+    contact_submit_success_title: "Thank you!",
+    contact_submit_success_desc: "Your message has been sent. We'll get back to you shortly.",
+    contact_submit_error_title: "Error",
+    contact_submit_error_desc: "Something went wrong. Please try again.",
+
+    // Form Errors
+    form_error_name_required: "Name is required",
+    form_error_email_invalid: "Invalid email address",
+    form_error_message_required: "Message is required",
+
+    // Admin
+    admin_login_title: "Admin Login",
+    admin_login_description: "Enter your credentials to access the dashboard.",
+    admin_login_email_label: "Email",
+    admin_login_password_label: "Password",
+    admin_login_signin_button: "Sign in",
+    admin_login_placeholder_notice: "This is a placeholder login. Authentication is not implemented.",
+    admin_dashboard_title: "Admin Dashboard",
+    admin_dashboard_description: "Welcome to the admin area. This is a placeholder for future features like portfolio management and analytics.",
+    admin_dashboard_return_button: "Return to Login",
 
     // Footer
     footer_rights: "All rights reserved.",
@@ -91,6 +110,7 @@ const translations = {
     // Contact
     contact_title: "تواصل معنا",
     contact_subtitle: "هل لديك مشروع في ذهنك؟ لنتحدث عنه.",
+    contact_our_studio: "الاستوديو الخاص بنا",
     contact_name_label: "الاسم",
     contact_name_placeholder: "اسمك الكامل",
     contact_email_label: "البريد الإلكتروني",
@@ -98,9 +118,27 @@ const translations = {
     contact_message_label: "الرسالة",
     contact_message_placeholder: "أخبرنا عن مشروعك...",
     contact_submit_button: "إرسال الرسالة",
-    contact_submit_success: "شكرًا لك! تم إرسال رسالتك بنجاح.",
-    contact_submit_error: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    contact_submit_success_title: "شكرًا لك!",
+    contact_submit_success_desc: "تم إرسال رسالتك بنجاح. سنعود إليك قريبًا.",
+    contact_submit_error_title: "خطأ",
+    contact_submit_error_desc: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
 
+    // Form Errors
+    form_error_name_required: "الاسم مطلوب",
+    form_error_email_invalid: "عنوان بريد إلكتروني غير صالح",
+    form_error_message_required: "الرسالة مطلوبة",
+
+    // Admin
+    admin_login_title: "تسجيل دخول المسؤول",
+    admin_login_description: "أدخل بيانات الاعتماد الخاصة بك للوصول إلى لوحة التحكم.",
+    admin_login_email_label: "البريد الإلكتروني",
+    admin_login_password_label: "كلمة المرور",
+    admin_login_signin_button: "تسجيل الدخول",
+    admin_login_placeholder_notice: "هذا تسجيل دخول وهمي. المصادقة غير مطبقة.",
+    admin_dashboard_title: "لوحة تحكم المسؤول",
+    admin_dashboard_description: "مرحبًا بك في منطقة الإدارة. هذا مكان مؤقت لميزات مستقبلية مثل إدارة المحافظ والتحليلات.",
+    admin_dashboard_return_button: "العودة إلى تسجيل الدخول",
+    
     // Footer
     footer_rights: "جميع الحقوق محفوظة.",
   },

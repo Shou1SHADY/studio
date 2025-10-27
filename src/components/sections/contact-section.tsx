@@ -22,14 +22,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-const contactFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(1, "Message is required"),
-});
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
-
 function SubmitButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
   return (
@@ -43,6 +35,14 @@ function SubmitButton({ label }: { label: string }) {
 export function ContactSection() {
   const { t } = useLanguage();
   const { toast } = useToast();
+
+  const contactFormSchema = z.object({
+    name: z.string().min(1, t("form_error_name_required")),
+    email: z.string().email(t("form_error_email_invalid")),
+    message: z.string().min(1, t("form_error_message_required")),
+  });
+
+  type ContactFormValues = z.infer<typeof contactFormSchema>;
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -59,15 +59,15 @@ export function ContactSection() {
   useEffect(() => {
     if (state.status === "success") {
       toast({
-        title: t("contact_submit_success"),
-        description: "We'll get back to you shortly.",
+        title: t("contact_submit_success_title"),
+        description: t("contact_submit_success_desc"),
         variant: "default",
       });
       form.reset();
     } else if (state.status === "error") {
       toast({
-        title: "Error",
-        description: state.message || t("contact_submit_error"),
+        title: t("contact_submit_error_title"),
+        description: state.message || t("contact_submit_error_desc"),
         variant: "destructive",
       });
     }

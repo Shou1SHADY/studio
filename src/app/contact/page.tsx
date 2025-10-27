@@ -9,7 +9,7 @@ import { Map } from "@/components/map";
 export default function ContactPage() {
   const { t } = useLanguage();
   return (
-    <div className="flex-grow flex items-center justify-center py-20 sm:py-24">
+    <div className="flex-grow flex items-center justify-center py-12 sm:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -24,7 +24,7 @@ export default function ContactPage() {
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold font-headline mb-4">
-                Our Studio
+                {t("contact_our_studio")}
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-4">
