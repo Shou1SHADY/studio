@@ -3,36 +3,42 @@
     {
       "id": "portfolio-1",
       "description": "Abstract 3D render of a keychain",
+      "category": "3D Modeling",
       "imageUrl": "https://images.unsplash.com/photo-1669390412953-677ec75ae6d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxrZXljaGFpbiUyMGFic3RyYWN0fGVufDB8fHx8MTc2MTU0MjEyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "keychain abstract"
     },
     {
       "id": "portfolio-2",
       "description": "Custom embroidered patch design",
+      "category": "Product Design",
       "imageUrl": "https://images.unsplash.com/photo-1618914862388-d6b826915414?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwYXRjaCUyMGVtYnJvaWRlcnl8ZW58MHx8fHwxNzYxNTQyMTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "patch embroidery"
     },
     {
       "id": "portfolio-3",
       "description": "Futuristic product visualization",
+      "category": "3D Modeling",
       "imageUrl": "https://images.unsplash.com/photo-1615402020065-b01cca46ca41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmdXR1cmlzdGljJTIwcHJvZHVjdHxlbnwwfHx8fDE3NjE0OTAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "futuristic product"
     },
     {
       "id": "portfolio-4",
       "description": "Architectural 3D modeling",
+      "category": "Architecture",
       "imageUrl": "https://images.unsplash.com/photo-1615406020658-6c4b805f1f30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmUlMjBtb2Rlcm58ZW58MHx8fHwxNzYxNTQyMTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "architecture modern"
     },
     {
       "id": "portfolio-5",
       "description": "Animated character design",
+      "category": "Animation",
       "imageUrl": "https://images.unsplash.com/photo-1760007418266-f08947dd3db9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaGFyYWN0ZXIlMjBhbmltYXRpb258ZW58MHx8fHwxNzYxNTQyMTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "character animation"
     },
     {
       "id": "portfolio-6",
       "description": "Brand identity motion graphics",
+      "category": "Motion Graphics",
       "imageUrl": "https://images.unsplash.com/photo-1501780392773-287d506245a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3Rpb24lMjBncmFwaGljc3xlbnwwfHx8fDE3NjE0OTA2MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "motion graphics"
     }
