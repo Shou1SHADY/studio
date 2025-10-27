@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/hooks/use-language";
-import { Box, Building, Layers, Package, MousePointerClick, AppWindow } from "lucide-react";
+import { Box, Layers, Package, MousePointerClick } from "lucide-react";
 import React from "react";
 
 const services = [
@@ -11,29 +11,19 @@ const services = [
     descriptionKey: "service_3d_modeling_description",
   },
   {
-    icon: Building,
-    titleKey: "service_animation_title",
-    descriptionKey: "service_animation_description",
-  },
-  {
     icon: Layers,
-    titleKey: "service_motion_graphics_title",
-    descriptionKey: "service_motion_graphics_description",
-  },
-  {
-    icon: AppWindow,
-    titleKey: "service_architecture_title",
-    descriptionKey: "service_architecture_description",
-  },
-  {
-    icon: Package,
     titleKey: "service_product_design_title",
     descriptionKey: "service_product_design_description",
   },
   {
+    icon: Package,
+    titleKey: "service_keychain_title",
+    descriptionKey: "service_keychain_description",
+  },
+  {
     icon: MousePointerClick,
-    titleKey: "service_interactive_title",
-    descriptionKey: "service_interactive_description",
+    titleKey: "service_patches_title",
+    descriptionKey: "service_patches_description",
   },
 ];
 
@@ -41,7 +31,7 @@ export const ServicesSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="container mx-auto">
+    <section id="services">
       <div className="text-center">
         <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           {t("services_title")}
@@ -50,7 +40,7 @@ export const ServicesSection = () => {
           {t("services_subtitle")}
         </p>
       </div>
-      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
         {services.map((service, index) => {
           const Icon = service.icon;
           return (

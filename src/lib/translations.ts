@@ -22,23 +22,19 @@ const translations = {
     
     // Services
     services_title: "Our Expertise",
-    services_subtitle: "We turn complex ideas into stunning visual realities. Explore our core services designed to elevate your brand and product.",
+    services_subtitle: "We turn complex ideas into stunning physical products. Explore our core services.",
     service_3d_modeling_title: "3D Modeling",
-    service_3d_modeling_description: "Creating intricate and high-quality 3D models for any purpose, from product visualization to game assets.",
-    service_animation_title: "Architectural Visualization",
-    service_animation_description: "Transforming architectural plans into photorealistic 3D renderings and immersive walkthroughs.",
-    service_motion_graphics_title: "Product Design",
-    service_motion_graphics_description: "From concept to final render, we design and visualize products that are both beautiful and functional.",
-    service_architecture_title: "Custom Patches",
-    service_architecture_description: "Designing and producing high-quality custom embroidered and PVC patches for brands and organizations.",
-    service_product_design_title: "Rubber Keychains",
-    service_product_design_description: "We design and manufacture custom rubber keychains, bringing your characters and logos to life.",
-    service_interactive_title: "Interactive Experiences",
-    service_interactive_description: "Building immersive real-time 3D experiences for web and virtual reality platforms.",
+    service_3d_modeling_description: "Creating intricate and high-quality 3D models, perfectly optimized for manufacturing and prototyping.",
+    service_product_design_title: "Product Design",
+    service_product_design_description: "From concept to final blueprint, we design products that are both beautiful and manufacturable.",
+    service_keychain_title: "Rubber Keychains",
+    service_keychain_description: "We design and manufacture custom rubber keychains, bringing your characters and logos to life in vibrant PVC.",
+    service_patches_title: "Custom Patches",
+    service_patches_description: "Designing and producing high-quality custom embroidered and PVC patches for brands and organizations.",
 
     // Portfolio
     portfolio_title: "Our Portfolio",
-    portfolio_subtitle: "A glimpse into the worlds we've created.",
+    portfolio_subtitle: "A glimpse into the products we've created.",
 
     // Contact
     contact_title: "Get in Touch",
@@ -78,23 +74,19 @@ const translations = {
 
     // Services
     services_title: "خبراتنا",
-    services_subtitle: "نحول الأفكار المعقدة إلى حقائق بصرية مذهلة. استكشف خدماتنا الأساسية المصممة للارتقاء بعلامتك التجارية ومنتجك.",
+    services_subtitle: "نحول الأفكار المعقدة إلى منتجات مادية مذهلة. استكشف خدماتنا الأساسية.",
     service_3d_modeling_title: "النمذجة ثلاثية الأبعاد",
-    service_3d_modeling_description: "إنشاء نماذج ثلاثية الأبعاد معقدة وعالية الجودة لأي غرض، من تصور المنتج إلى أصول الألعاب.",
-    service_animation_title: "التصور المعماري",
-    service_animation_description: "تحويل المخططات المعمارية إلى عروض ثلاثية الأبعاد واقعية وجولات افتراضية غامرة.",
-    service_motion_graphics_title: "تصميم المنتج",
-    service_motion_graphics_description: "من المفهوم إلى العرض النهائي، نقوم بتصميم وتصور منتجات جميلة وعملية.",
-    service_architecture_title: "رقع مخصصة",
-    service_architecture_description: "تصميم وإنتاج رقع مطرزة و PVC مخصصة عالية الجودة للعلامات التجارية والمؤسسات.",
-    service_product_design_title: "سلاسل مفاتيح مطاطية",
-    service_product_design_description: "نقوم بتصميم وتصنيع سلاسل مفاتيح مطاطية مخصصة، مما يضفي الحياة على شخصياتك وشعاراتك.",
-    service_interactive_title: "التجارب التفاعلية",
-    service_interactive_description: "بناء تجارب ثلاثية الأبعاد غامرة في الوقت الفعلي للويب ومنصات الواقع الافتراضي.",
+    service_3d_modeling_description: "إنشاء نماذج ثلاثية الأبعاد معقدة وعالية الجودة، محسّنة بشكل مثالي للتصنيع والنماذج الأولية.",
+    service_product_design_title: "تصميم المنتج",
+    service_product_design_description: "من المفهوم إلى المخطط النهائي، نصمم منتجات جميلة وقابلة للتصنيع.",
+    service_keychain_title: "سلاسل مفاتيح مطاطية",
+    service_keychain_description: "نقوم بتصميم وتصنيع سلاسل مفاتيح مطاطية مخصصة، ونجعل شخصياتك وشعاراتك تنبض بالحياة في مادة PVC النابضة بالحياة.",
+    service_patches_title: "رقع مخصصة",
+    service_patches_description: "تصميم وإنتاج رقع مطرزة و PVC مخصصة عالية الجودة للعلامات التجارية والمؤسسات.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
-    portfolio_subtitle: "لمحة عن العوالم التي أنشأناها.",
+    portfolio_subtitle: "لمحة عن المنتجات التي أنشأناها.",
 
     // Contact
     contact_title: "تواصل معنا",
