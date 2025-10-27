@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Card,
-  CardContent,
+  Card
 } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { useLanguage } from "@/hooks/use-language";
@@ -13,8 +12,7 @@ export const PortfolioSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="portfolio" className="py-20 sm:py-32">
-      <div className="container">
+    <section id="portfolio">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             {t("portfolio_title")}
@@ -52,7 +50,6 @@ export const PortfolioSection = () => {
             </Link>
           ))}
         </div>
-      </div>
     </section>
   );
 };
