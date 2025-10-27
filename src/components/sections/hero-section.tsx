@@ -39,14 +39,17 @@ export const HeroSection = () => {
       <div className="relative z-10 -mt-[100vh]">
         {/* Initial Frame */}
         <div className="container flex h-screen items-center justify-center text-center">
-           <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter max-w-4xl"
-            style={{ textShadow: "0 2px 10px hsl(var(--background))" }}
-          >
-            {t("hero_headline")}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-secondary-foreground md:text-xl">
-            {t("hero_subheadline")}
-          </p>
+          <div>
+            <h1
+              className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl"
+              style={{ textShadow: "0 2px 10px hsl(var(--background))" }}
+            >
+              {t("hero_headline")}
+            </h1>
+            <p className="mt-6 max-w-2xl mx-auto text-lg text-secondary-foreground md:text-xl">
+              {t("hero_subheadline")}
+            </p>
+          </div>
         </div>
 
         {/* Story Frames */}
