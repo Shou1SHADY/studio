@@ -84,8 +84,10 @@ const ThreeScene = ({ className }: { className?: string }) => {
       targetRotation.x = scrollY * 0.001;
 
       // Update geometry and color
-      const chapterCount = geometries.length;
-      const chapterIndex = Math.min(Math.floor(scrollFraction * (chapterCount * 1.5)), chapterCount - 1);
+      const chapterCount = 4; // Total number of story frames
+      const chapterHeight = scrollHeight / chapterCount;
+      // Change geometry after the second frame
+      const chapterIndex = scrollY > chapterHeight * 2 ? 1 : 0;
       
       if (meshRef.current && meshRef.current.geometry !== geometries[chapterIndex]) {
         meshRef.current.geometry.dispose();
