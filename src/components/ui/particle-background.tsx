@@ -75,10 +75,10 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
           p.vy += forceDirectionY * force * 0.1;
         }
 
-        // Draw particle - Using a more consistent and obvious purple
+        // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(220, 100%, 70%, ${p.opacity})`;
+        ctx.fillStyle = `hsla(220, 100%, 80%, ${p.opacity})`;
         ctx.fill();
       });
 
@@ -92,7 +92,7 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `hsla(220, 100%, 70%, ${1 - dist / 120})`;
+            ctx.strokeStyle = `hsla(220, 100%, 80%, ${1 - dist / 120})`;
             ctx.lineWidth = 0.3;
             ctx.stroke();
           }
