@@ -60,5 +60,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Use auto scroll-behavior for the storytelling effect to feel more natural */
+  scroll-behavior: auto;
 }
