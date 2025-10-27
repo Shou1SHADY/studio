@@ -5,13 +5,13 @@ import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
 const geometries = [
-  new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32), // Increased size
-  new THREE.TorusGeometry(1.8, 0.5, 32, 100), // Increased size
+  new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32),
+  new THREE.TorusGeometry(1.8, 0.5, 32, 100), 
 ];
 
 const colors = [
-  new THREE.Color(0x87CEFA), // LightSkyBlue
-  new THREE.Color(0xADD8E6), // LightBlue
+  new THREE.Color(0x8A3FFC), // Vibrant Purple
+  new THREE.Color(0xFF7F50), // Coral/Orange
 ];
 
 const ThreeScene = ({ className }: { className?: string }) => {
@@ -52,7 +52,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
     });
     const mesh = new THREE.Mesh(geometries[0], material);
     scene.add(mesh);
-    camera.position.z = 4.5; // Moved camera closer
+    camera.position.z = 4.5;
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
@@ -61,13 +61,13 @@ const ThreeScene = ({ className }: { className?: string }) => {
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0x87CEFA, 100, 100);
+    const pointLight2 = new THREE.PointLight(colors[0], 100, 100);
     pointLight2.position.set(-10, -10, -10);
     scene.add(pointLight2);
     
     const elasticity = 0.05;
     const targetRotation = { x: 0, y: 0 };
-    const targetColor = new THREE.Color(0x87CEFA);
+    const targetColor = new THREE.Color(colors[0]);
 
     function onScroll() {
       if (!isMounted) return;
@@ -113,7 +113,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
     animate();
 
     const handleResize = () => {
-      if (!isMounted) return;
+      if (!isMounted || !renderer) return;
       camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
@@ -126,7 +126,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
       
-      if (renderer.domElement) {
+      if (renderer.domElement && currentMount.contains(renderer.domElement)) {
         currentMount.removeChild(renderer.domElement);
       }
 
