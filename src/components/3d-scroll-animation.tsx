@@ -10,8 +10,8 @@ const geometries = [
 ];
 
 const colors = [
-  new THREE.Color(0x8A2BE2), // BlueViolet (matches new primary)
-  new THREE.Color(0xFF00FF), // Magenta
+  new THREE.Color(0x87CEFA), // LightSkyBlue
+  new THREE.Color(0xADD8E6), // LightBlue
 ];
 
 const ThreeScene = ({ className }: { className?: string }) => {
@@ -21,7 +21,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const meshRef = useRef<THREE.Mesh | null>(null);
   const targetRotation = useRef({ x: 0, y: 0 }).current;
-  const targetColor = useRef(new THREE.Color(0x8A2BE2)).current;
+  const targetColor = useRef(new THREE.Color(0x87CEFA)).current;
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -66,7 +66,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0x8A2BE2, 100, 100);
+    const pointLight2 = new THREE.PointLight(0x87CEFA, 100, 100);
     pointLight2.position.set(-10, -10, -10);
     scene.add(pointLight2);
     
@@ -99,9 +99,10 @@ const ThreeScene = ({ className }: { className?: string }) => {
     const timer = setTimeout(() => onScroll(), 100);
     
     // Animation loop
+    let animationFrameId: number;
     const clock = new THREE.Clock();
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
 
       if (meshRef.current) {
         const elapsedTime = clock.getElapsedTime();
@@ -145,9 +146,11 @@ const ThreeScene = ({ className }: { className?: string }) => {
 
     // Cleanup
     return () => {
+      cancelAnimationFrame(animationFrameId);
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
+      
       if (mountRef.current && rendererRef.current) {
         mountRef.current.removeChild(rendererRef.current.domElement);
       }
@@ -158,6 +161,12 @@ const ThreeScene = ({ className }: { className?: string }) => {
       if(rendererRef.current) {
         rendererRef.current.dispose();
       }
+
+      // Explicitly nullify refs to ensure a clean state on remount
+      sceneRef.current = null;
+      cameraRef.current = null;
+      rendererRef.current = null;
+      meshRef.current = null;
     };
   }, []);
 
