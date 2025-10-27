@@ -33,16 +33,15 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
 
     const initParticles = () => {
       particles = [];
-      // Increased particle density
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 2.5 + 1.5, // Increased size
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.5, // Consistently higher opacity
+          radius: Math.random() * 1.5 + 1,
+          vx: (Math.random() - 0.5) * 0.2,
+          vy: (Math.random() - 0.5) * 0.2,
+          opacity: Math.random() * 0.5 + 0.2,
         });
       }
     };
@@ -79,8 +78,7 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
         // Draw particle - Using a more consistent and obvious purple
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        // Using a solid, vibrant color for all particles
-        ctx.fillStyle = `hsl(262, 83%, 70%)`;
+        ctx.fillStyle = `hsla(220, 100%, 70%, ${p.opacity})`;
         ctx.fill();
       });
 
@@ -94,9 +92,8 @@ export const ParticleBackground = ({ className }: { className?: string }) => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            // More obvious lines
-            ctx.strokeStyle = `hsla(262, 83%, 70%, ${1 - dist / 120})`;
-            ctx.lineWidth = 0.7; // Thicker lines
+            ctx.strokeStyle = `hsla(220, 100%, 70%, ${1 - dist / 120})`;
+            ctx.lineWidth = 0.3;
             ctx.stroke();
           }
         }
