@@ -1,12 +1,12 @@
 "use client";
 
 import { useLanguage } from "@/hooks/use-language";
-import { Cube, Film, Layers, Building, Package, MousePointerClick } from "lucide-react";
+import { Box, Film, Layers, Building, Package, MousePointerClick } from "lucide-react";
 import React from "react";
 
 const services = [
   {
-    icon: Cube,
+    icon: Box,
     titleKey: "service_3d_modeling_title",
     descriptionKey: "service_3d_modeling_description",
   },
