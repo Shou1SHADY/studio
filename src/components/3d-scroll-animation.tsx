@@ -6,14 +6,12 @@ import { cn } from "@/lib/utils";
 
 const geometries = [
   new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32), // Increased size
-  new THREE.IcosahedronGeometry(2.2), // Increased size
   new THREE.TorusGeometry(1.8, 0.5, 32, 100), // Increased size
   new THREE.ConeGeometry(1.9, 2.5, 64), // Increased size
 ];
 
 const colors = [
   new THREE.Color(0x8A2BE2), // BlueViolet (matches new primary)
-  new THREE.Color(0x00BFFF), // DeepSkyBlue
   new THREE.Color(0xFF00FF), // Magenta
   new THREE.Color(0x39FF14), // Neon Green
 ];
