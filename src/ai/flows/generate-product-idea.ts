@@ -10,12 +10,12 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const GenerateProductIdeaInputSchema = z.object({
+const GenerateProductIdeaInputSchema = z.object({
   description: z.string().describe('A brief description of the product idea.'),
 });
 export type GenerateProductIdeaInput = z.infer<typeof GenerateProductIdeaInputSchema>;
 
-export const GenerateProductIdeaOutputSchema = z.object({
+const GenerateProductIdeaOutputSchema = z.object({
   name: z.string().describe('A catchy and creative name for the product.'),
   detailedDescription: z
     .string()

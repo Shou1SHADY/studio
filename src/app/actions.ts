@@ -4,7 +4,21 @@ import { z } from "zod";
 import { analyzeContactFormSubmission } from "@/ai/flows/analyze-contact-form-sentiment";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { generateProductIdea, GenerateProductIdeaInputSchema, GenerateProductIdeaOutputSchema, type GenerateProductIdeaOutput } from "@/ai/flows/generate-product-idea";
+import { generateProductIdea, type GenerateProductIdeaOutput } from "@/ai/flows/generate-product-idea";
+
+// Schema for the product idea generator
+export const GenerateProductIdeaInputSchema = z.object({
+  description: z.string().min(10, "Please describe your idea in at least 10 characters."),
+});
+
+// Schema for the output of the product idea generator
+export const GenerateProductIdeaOutputSchema = z.object({
+  name: z.string(),
+  detailedDescription: z.string(),
+  features: z.array(z.string()),
+  materials: z.array(z.string()),
+});
+
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
