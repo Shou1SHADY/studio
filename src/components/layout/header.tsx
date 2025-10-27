@@ -35,7 +35,7 @@ export const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-primary"
+                className="transition-colors hover:text-primary px-4 py-2"
               >
                 {link.label}
               </Link>
