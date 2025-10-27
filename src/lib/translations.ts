@@ -13,10 +13,8 @@ const translations = {
     hero_cta: "Explore Our Work",
     story_frame_1_title: "From Raw Idea to Malleable Digital Clay",
     story_frame_1_text: "Every creation begins with a spark. We take your raw concept and transform it into a robust, malleable digital compound, ready for our artists to shape and mold in virtual space.",
-    story_frame_2_title: "Precision Modeling and Virtual Shaping",
-    story_frame_2_text: "Our digital compound is sculpted with high-precision tools. Under the skilled hands of our artists, it takes the exact form of your design, from the simplest object to the most complex, intricate character.",
-    story_frame_3_title: "The Magic of Texturing and Rendering",
-    story_frame_3_text: "This is where the magic happens. The shaped model undergoes digital texturing and rendering, a process that forges a strong visual identity, giving the product its final look, feel, and life-like detail.",
+    story_frame_2_title: "The Magic of Texturing and Rendering",
+    story_frame_2_text: "This is where the magic happens. The shaped model undergoes digital texturing and rendering, a process that forges a strong visual identity, giving the product its final look, feel, and life-like detail.",
     
     // Portfolio
     portfolio_title: "Our Portfolio",
@@ -51,10 +49,8 @@ const translations = {
     hero_cta: "اكتشف أعمالنا",
     story_frame_1_title: "من الفكرة الأولية إلى الطين الرقمي المرن",
     story_frame_1_text: "كل إبداع يبدأ بشرارة. نأخذ مفهومك الخام ونحوله إلى مركب رقمي قوي ومرن، جاهز لفنانينا لتشكيله في الفضاء الافتراضي.",
-    story_frame_2_title: "النمذجة الدقيقة والتشكيل الافتراضي",
-    story_frame_2_text: "يتم نحت مركبنا الرقمي بأدوات عالية الدقة. تحت الأيدي الماهرة لفنانينا، يأخذ شكل تصميمك بالضبط، من أبسط الأشياء إلى أكثر الشخصيات تعقيدًا.",
-    story_frame_3_title: "سحر الإكساء والتصيير",
-    story_frame_3_text: "هنا يحدث السحر. يخضع النموذج المشكل لعملية الإكساء والتصيير الرقمي، وهي عملية تشكل هوية بصرية قوية، مما يمنح المنتج مظهره النهائي وملمسه وتفاصيله النابضة بالحياة.",
+    story_frame_2_title: "سحر الإكساء والتصيير",
+    story_frame_2_text: "هنا يحدث السحر. يخضع النموذج المشكل لعملية الإكساء والتصيير الرقمي، وهي عملية تشكل هوية بصرية قوية، مما يمنح المنتج مظهره النهائي وملمسه وتفاصيله النابضة بالحياة.",
 
     // Portfolio
     portfolio_title: "أعمالنا",
