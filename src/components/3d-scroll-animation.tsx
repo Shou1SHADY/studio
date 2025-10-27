@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useRef, useEffect } from "react";
@@ -23,10 +22,12 @@ const ThreeScene = ({ className }: { className?: string }) => {
   const meshRef = useRef<THREE.Mesh | null>(null);
   const targetRotation = useRef({ x: 0, y: 0 }).current;
   const targetColor = useRef(new THREE.Color(0x87CEFA)).current;
-  const initialScrollFired = useRef(false);
 
   useEffect(() => {
     if (!mountRef.current) return;
+    
+    let animationFrameId: number;
+    let isMounted = true;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -72,23 +73,16 @@ const ThreeScene = ({ className }: { className?: string }) => {
     pointLight2.position.set(-10, -10, -10);
     scene.add(pointLight2);
     
-    // Scroll animation
     const elasticity = 0.05;
 
     function onScroll() {
-      if (!initialScrollFired.current) {
-        initialScrollFired.current = true;
-      }
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       
-      // There are 5 frames total (1 hero + 4 story)
       const totalFrames = 5; 
       
-      // Change geometry after the third frame (index 2)
       const chapterIndex = (scrollY / scrollHeight) > (2.5 / totalFrames) ? 1 : 0;
 
-      // Update rotation based on scroll
       targetRotation.y = scrollY * 0.002;
       targetRotation.x = scrollY * 0.001;
       
@@ -100,31 +94,24 @@ const ThreeScene = ({ className }: { className?: string }) => {
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     
-    // Animation loop
-    let animationFrameId: number;
+    setTimeout(onScroll, 100);
+
     const clock = new THREE.Clock();
     const animate = () => {
+      if (!isMounted) return;
       animationFrameId = requestAnimationFrame(animate);
-
-      // If no scroll event has happened but the page is scrolled, fire it once.
-      if (!initialScrollFired.current && window.scrollY > 0) {
-        onScroll();
-      }
 
       if (meshRef.current) {
         const elapsedTime = clock.getElapsedTime();
 
-        // Continuous rotation
         const continuousRotationX = Math.sin(elapsedTime * 0.2) * 0.25;
         const continuousRotationY = elapsedTime * 0.1;
         
-        // Elastic rotation towards scroll target
         meshRef.current.rotation.x +=
           (targetRotation.x + continuousRotationX - meshRef.current.rotation.x) * elasticity;
         meshRef.current.rotation.y +=
           (targetRotation.y + continuousRotationY - meshRef.current.rotation.y) * elasticity;
         
-        // Elastic color transition
         const material = meshRef.current.material as THREE.MeshStandardMaterial;
         material.color.lerp(targetColor, elasticity);
         material.emissive.lerp(targetColor, elasticity);
@@ -138,7 +125,6 @@ const ThreeScene = ({ className }: { className?: string }) => {
     };
     animate();
 
-    // Handle resize
     const handleResize = () => {
       if (!mountRef.current || !rendererRef.current || !cameraRef.current) return;
       cameraRef.current.aspect =
@@ -151,22 +137,23 @@ const ThreeScene = ({ className }: { className?: string }) => {
     };
     window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
+      isMounted = false;
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", handleResize);
       
-      if (mountRef.current && rendererRef.current) {
-        mountRef.current.removeChild(rendererRef.current.domElement);
-      }
-      geometries.forEach(g => g.dispose());
-      if(meshRef.current) {
-        (meshRef.current.material as THREE.MeshStandardMaterial).dispose();
-      }
-      if(rendererRef.current) {
+      if (rendererRef.current) {
+        if (mountRef.current) {
+            mountRef.current.removeChild(rendererRef.current.domElement);
+        }
         rendererRef.current.dispose();
       }
+
+      if (meshRef.current) {
+        (meshRef.current.material as THREE.Material).dispose();
+      }
+      geometries.forEach(g => g.dispose());
 
       sceneRef.current = null;
       cameraRef.current = null;
