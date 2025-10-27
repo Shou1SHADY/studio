@@ -13,6 +13,9 @@ import {
   GenerateProductIdeaOutputSchema,
 } from '@/lib/schemas';
 import {z} from 'zod';
+import { config } from 'dotenv';
+
+config();
 
 export type GenerateProductIdeaInput = z.infer<
   typeof GenerateProductIdeaInputSchema
