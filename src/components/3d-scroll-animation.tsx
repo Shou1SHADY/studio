@@ -82,7 +82,7 @@ const ThreeScene = ({ className }: { className?: string }) => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollFraction = scrollY / scrollHeight;
 
-      // Update rotation
+      // Update rotation based on scroll
       const rotationFactor = 6;
       targetRotation.y = scrollY * 0.002;
       targetRotation.x = scrollY * 0.001;
@@ -101,15 +101,22 @@ const ThreeScene = ({ className }: { className?: string }) => {
     onScroll(); // Initial call
     
     // Animation loop
+    const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
 
       if (meshRef.current) {
-        // Elastic rotation
+        const elapsedTime = clock.getElapsedTime();
+
+        // Continuous rotation
+        const continuousRotationX = Math.sin(elapsedTime * 0.2) * 0.25;
+        const continuousRotationY = elapsedTime * 0.1;
+        
+        // Elastic rotation towards scroll target
         meshRef.current.rotation.x +=
-          (targetRotation.x - meshRef.current.rotation.x) * elasticity;
+          (targetRotation.x + continuousRotationX - meshRef.current.rotation.x) * elasticity;
         meshRef.current.rotation.y +=
-          (targetRotation.y - meshRef.current.rotation.y) * elasticity;
+          (targetRotation.y + continuousRotationY - meshRef.current.rotation.y) * elasticity;
         
         // Elastic color transition
         const material = meshRef.current.material as THREE.MeshStandardMaterial;
