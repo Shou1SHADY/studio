@@ -38,18 +38,16 @@ export const PortfolioSection = () => {
                     data-ai-hint={item.imageHint}
                     className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                </div>
-                <CardContent className="absolute bottom-0 w-full p-4 transition-all duration-300 ease-in-out">
-                  <div className="translate-y-2 transform transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                   <div className="absolute bottom-0 w-full p-4">
+                     <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                       {item.category}
                     </p>
                     <h3 className="font-headline text-lg font-bold text-white">
                       {item.description}
                     </h3>
                   </div>
-                </CardContent>
+                </div>
               </Card>
             </Link>
           ))}

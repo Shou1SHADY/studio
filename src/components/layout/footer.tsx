@@ -11,9 +11,9 @@ export const Footer = () => {
 
   return (
     <footer className="border-t border-border/40 py-8">
-      <div className="container flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <div className="container flex flex-col items-center justify-between gap-6 sm:flex-row px-4">
         <Logo />
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground text-center">
           &copy; {currentYear} Elastic Canvas. {t("footer_rights")}
         </p>
         <div className="flex items-center gap-4">
