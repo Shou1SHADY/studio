@@ -22,14 +22,12 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
-        <div className="flex flex-1 items-center justify-between md:justify-start">
-          {/* Logo */}
+      <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+        {/* Logo and Desktop Navigation */}
+        <div className="flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Logo />
           </Link>
-
-          {/* Desktop Navigation */}
           <nav className="hidden items-center gap-6 text-sm md:flex">
             {navLinks.map((link) => (
               <Link
@@ -43,7 +41,8 @@ export const Header = () => {
           </nav>
         </div>
 
-        <div className="flex items-center justify-end gap-4">
+        {/* Right side controls */}
+        <div className="flex items-center gap-4">
           {/* Language Toggle */}
           <Button
             variant="outline"
@@ -54,7 +53,7 @@ export const Header = () => {
             {t("toggle_language")}
           </Button>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation Trigger */}
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button
