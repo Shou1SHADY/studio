@@ -33,7 +33,7 @@ export const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-headline font-bold text-base text-muted-foreground transition-colors hover:bg-gradient-to-r hover:from-primary hover:to-blue-400 hover:bg-clip-text hover:text-transparent px-4 py-2"
+                className="font-headline font-bold text-base bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent transition-all duration-300 hover:opacity-80 hover:scale-105 px-4 py-2"
               >
                 {link.label}
               </Link>
