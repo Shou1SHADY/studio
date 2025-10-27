@@ -8,6 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import {googleAI} from '@genkit-ai/google-genai';
 import {
   GenerateProductIdeaInputSchema,
   GenerateProductIdeaOutputSchema,
@@ -31,6 +32,7 @@ const generateProductIdeaPrompt = ai.definePrompt({
   name: 'generateProductIdeaPrompt',
   input: {schema: GenerateProductIdeaInputSchema},
   output: {schema: GenerateProductIdeaOutputSchema},
+  model: googleAI.model('gemini-1.5-flash-latest'),
   prompt: `You are an expert product designer. A user has an idea. Flesh it out into a concept.
   Keep it short and simple.
   User's Idea: {{{description}}}
