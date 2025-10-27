@@ -31,7 +31,6 @@ export const HeroSection = () => {
       <div className="sticky top-0 h-screen w-full">
         <div className="absolute inset-0 z-0">
           <ThreeScene />
-          <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
         </div>
       </div>
 
