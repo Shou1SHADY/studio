@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { createContext, useState, useCallback, ReactNode } from "react";
+import React, { createContext, useState, useCallback, ReactNode, useEffect } from "react";
 import translations from "@/lib/translations";
 
 export type Language = "en" | "ar";
@@ -28,15 +28,17 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   const [language, setLanguage] = useState<Language>("en");
   const [direction, setDirection] = useState<Direction>("ltr");
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.lang = language;
+      document.documentElement.dir = direction;
+    }
+  }, [language, direction]);
+
   const toggleLanguage = useCallback(() => {
     setLanguage((prevLang) => {
       const newLang = prevLang === "en" ? "ar" : "en";
       setDirection(newLang === "ar" ? "rtl" : "ltr");
-      // Set the dir attribute on the html element
-      if (typeof window !== 'undefined') {
-        document.documentElement.lang = newLang;
-        document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-      }
       return newLang;
     });
   }, []);
