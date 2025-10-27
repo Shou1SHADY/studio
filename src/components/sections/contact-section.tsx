@@ -74,7 +74,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-20 sm:py-32 bg-background/50">
-      <div className="container max-w-4xl">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center">
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             {t("contact_title")}

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function AdminDashboardPage() {
   return (
-    <div className="container py-10">
+    <div className="py-10">
       <Card>
         <CardHeader>
           <CardTitle className="font-headline">Admin Dashboard</CardTitle>
