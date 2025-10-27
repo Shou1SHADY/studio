@@ -105,11 +105,13 @@ export async function generateProductIdeaAction(
         message: "Idea generated successfully!",
         status: "success",
       };
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
+      // Pass the actual error message to the client
+      const errorMessage = e.message || "An unknown AI error occurred. Please check the server logs.";
       return {
         data: null,
-        message: "An AI error occurred. Please try again.",
+        message: `AI Error: ${errorMessage}`,
         status: "error",
       };
     }

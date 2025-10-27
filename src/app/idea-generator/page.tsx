@@ -80,7 +80,7 @@ export default function IdeaGeneratorPage() {
         </form>
 
         {state.status === 'error' && (
-          <p className="text-center text-destructive">{state.message}</p>
+          <p className="text-center text-destructive whitespace-pre-wrap">{state.message}</p>
         )}
         
         {state.status === 'success' && state.data && <IdeaResult data={state.data} />}
