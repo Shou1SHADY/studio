@@ -8,23 +8,10 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { GenerateProductIdeaInputSchema, GenerateProductIdeaOutputSchema } from '@/lib/schemas';
+import { z } from 'zod';
 
-const GenerateProductIdeaInputSchema = z.object({
-  description: z.string().describe('A brief description of the product idea.'),
-});
 export type GenerateProductIdeaInput = z.infer<typeof GenerateProductIdeaInputSchema>;
-
-const GenerateProductIdeaOutputSchema = z.object({
-  name: z.string().describe('A catchy and creative name for the product.'),
-  detailedDescription: z
-    .string()
-    .describe('A detailed, engaging description of the product concept.'),
-  features: z.array(z.string()).describe('A list of key features for the product.'),
-  materials: z
-    .array(z.string())
-    .describe('A list of suggested materials for manufacturing the product (e.g., PVC, Embroidered Fabric).'),
-});
 export type GenerateProductIdeaOutput = z.infer<typeof GenerateProductIdeaOutputSchema>;
 
 export async function generateProductIdea(
