@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -13,11 +13,17 @@ import { Menu, X } from "lucide-react";
 export const Header = () => {
   const { t, toggleLanguage, language } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const navLinks = [
     { href: "/", label: t("nav_home") },
     { href: "/services", label: t("nav_services") },
     { href: "/portfolio", label: t("nav_portfolio") },
+    { href: "/idea-generator", label: t("nav_idea_generator") },
     { href: "/contact", label: t("nav_contact") },
   ];
 
@@ -45,14 +51,16 @@ export const Header = () => {
         {/* Right side controls */}
         <div className="flex items-center gap-4">
           {/* Language Toggle */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleLanguage}
-            className="hidden font-bold sm:flex"
-          >
-            {t("toggle_language")}
-          </Button>
+          {isClient && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleLanguage}
+              className="hidden font-bold sm:flex"
+            >
+              {t("toggle_language")}
+            </Button>
+          )}
 
           {/* Mobile Navigation Trigger */}
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -88,19 +96,21 @@ export const Header = () => {
                     </Link>
                   ))}
                 </nav>
-                <div className="mt-auto">
-                   <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        toggleLanguage();
-                        setIsMenuOpen(false)
-                      }}
-                      className="w-full font-bold"
-                    >
-                      {t("toggle_language")}
-                    </Button>
-                </div>
+                {isClient && (
+                  <div className="mt-auto">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          toggleLanguage();
+                          setIsMenuOpen(false)
+                        }}
+                        className="w-full font-bold"
+                      >
+                        {t("toggle_language")}
+                      </Button>
+                  </div>
+                )}
               </div>
             </SheetContent>
           </Sheet>

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { analyzeContactFormSubmission } from "@/ai/flows/analyze-contact-form-sentiment";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { generateProductIdea, GenerateProductIdeaInputSchema, GenerateProductIdeaOutputSchema, type GenerateProductIdeaOutput } from "@/ai/flows/generate-product-idea";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -72,4 +73,43 @@ export async function submitContactForm(
       status: "error",
     };
   }
+}
+
+export type IdeaGeneratorState = {
+  data: GenerateProductIdeaOutput | null;
+  message: string;
+  status: "success" | "error" | "idle" | "pending";
+};
+
+export async function generateProductIdeaAction(
+  prevState: IdeaGeneratorState,
+  formData: FormData
+): Promise<IdeaGeneratorState> {
+    const parsed = GenerateProductIdeaInputSchema.safeParse({
+      description: formData.get("description"),
+    });
+
+    if (!parsed.success) {
+      return {
+        data: null,
+        message: parsed.error.errors.map((e) => e.message).join(", "),
+        status: "error",
+      };
+    }
+
+    try {
+      const result = await generateProductIdea(parsed.data);
+      return {
+        data: result,
+        message: "Idea generated successfully!",
+        status: "success",
+      };
+    } catch (e) {
+      console.error(e);
+      return {
+        data: null,
+        message: "An AI error occurred. Please try again.",
+        status: "error",
+      };
+    }
 }

@@ -5,6 +5,7 @@ const translations = {
     nav_home: "Home",
     nav_services: "Services",
     nav_portfolio: "Portfolio",
+    nav_idea_generator: "Idea Generator",
     nav_contact: "Contact",
     toggle_language: "AR",
 
@@ -40,6 +41,16 @@ const translations = {
     // Portfolio
     portfolio_title: "Our Portfolio",
     portfolio_subtitle: "A glimpse into the products we've created.",
+
+    // Idea Generator
+    idea_generator_title: "AI Product Idea Generator",
+    idea_generator_subtitle: "Stuck for an idea? Describe a concept, character, or theme, and let our AI create a unique product concept for you.",
+    idea_generator_label: "Describe your idea...",
+    idea_generator_placeholder: "e.g., 'A cyberpunk fox character', 'A keychain for a coffee shop brand', 'A retro gaming-themed patch'",
+    idea_generator_button: "Generate Idea",
+    idea_generator_result_desc: "Description",
+    idea_generator_result_features: "Key Features",
+    idea_generator_result_materials: "Suggested Materials",
 
     // Contact
     contact_title: "Get in Touch",
@@ -81,6 +92,7 @@ const translations = {
     nav_home: "الرئيسية",
     nav_services: "خدماتنا",
     nav_portfolio: "أعمالنا",
+    nav_idea_generator: "مولد الأفكار",
     nav_contact: "اتصل بنا",
     toggle_language: "EN",
 
@@ -116,6 +128,16 @@ const translations = {
     // Portfolio
     portfolio_title: "أعمالنا",
     portfolio_subtitle: "لمحة عن المنتجات التي أنشأناها.",
+
+    // Idea Generator
+    idea_generator_title: "مولد أفكار المنتجات بالذكاء الاصطناعي",
+    idea_generator_subtitle: "هل أنت عالق في فكرة؟ صف مفهومًا أو شخصية أو موضوعًا، ودع الذكاء الاصطناعي لدينا ينشئ لك مفهوم منتج فريد.",
+    idea_generator_label: "صف فكرتك...",
+    idea_generator_placeholder: "على سبيل المثال: 'شخصية ثعلب سايبربانك' ، 'سلسلة مفاتيح لعلامة تجارية لمقهى' ، 'رقعة ذات طابع ألعاب كلاسيكي'",
+    idea_generator_button: "توليد فكرة",
+    idea_generator_result_desc: "الوصف",
+    idea_generator_result_features: "الميزات الرئيسية",
+    idea_generator_result_materials: "المواد المقترحة",
 
     // Contact
     contact_title: "تواصل معنا",
