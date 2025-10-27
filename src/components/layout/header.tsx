@@ -28,12 +28,12 @@ export const Header = () => {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Logo />
           </Link>
-          <nav className="hidden items-center gap-2 text-sm md:flex">
+          <nav className="hidden items-center gap-2 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-headline font-bold text-muted-foreground transition-colors hover:bg-gradient-to-r hover:from-primary hover:to-blue-400 hover:bg-clip-text hover:text-transparent px-4 py-2"
+                className="font-headline font-bold text-base text-muted-foreground transition-colors hover:bg-gradient-to-r hover:from-primary hover:to-blue-400 hover:bg-clip-text hover:text-transparent px-4 py-2"
               >
                 {link.label}
               </Link>
