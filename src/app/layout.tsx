@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description: "Creative 3D Design and Development",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,6 +32,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=PT+Sans:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="preload" href="/models/the_noble_craftsman.glb" as="fetch" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       </head>
       <body
         className={cn(

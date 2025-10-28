@@ -30,13 +30,17 @@ const ThreeScene = ({ className, modelUrl = "/mystic_inquisitor.glb" }: ThreeSce
       0.1,
       1000
     );
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: false, // Disable for better performance
+      alpha: true,
+      powerPreference: "high-performance"
+    });
 
     renderer.setSize(
       currentMount.clientWidth,
       currentMount.clientHeight
     );
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
     currentMount.appendChild(renderer.domElement);
 
     // Lighting
@@ -53,7 +57,7 @@ const ThreeScene = ({ className, modelUrl = "/mystic_inquisitor.glb" }: ThreeSce
 
     let modelRoot: THREE.Object3D | null = null;
 
-    // Lazy-load GLTFLoader to avoid SSR issues
+    // Load model with caching and faster loading
     const loadModel = async () => {
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
       const loader = new GLTFLoader();
@@ -64,9 +68,14 @@ const ThreeScene = ({ className, modelUrl = "/mystic_inquisitor.glb" }: ThreeSce
           (gltf) => {
             if (!isMounted) return resolve();
             modelRoot = gltf.scene;
+            // Optimize model for faster rendering
             modelRoot.traverse((child) => {
               if ((child as THREE.Mesh).isMesh) {
                 const mesh = child as THREE.Mesh;
+                mesh.frustumCulled = true; // Enable frustum culling
+                mesh.castShadow = false; // Disable shadows for performance
+                mesh.receiveShadow = false;
+                
                 if (Array.isArray((mesh.material as any))) {
                   (mesh.material as any).forEach((m: THREE.Material) => {
                     const std = m as THREE.MeshStandardMaterial;
