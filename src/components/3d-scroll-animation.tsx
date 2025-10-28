@@ -4,17 +4,14 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
-const geometries = [
-  new THREE.TorusKnotGeometry(1.5, 0.4, 200, 32),
-  new THREE.TorusGeometry(1.8, 0.5, 32, 100), 
-];
+type ThreeSceneProps = {
+  className?: string;
+  modelUrl?: string; // e.g. "/my-model.glb" in public
+};
 
-const colors = [
-  new THREE.Color(0x8A3FFC), // Vibrant Purple
-  new THREE.Color(0xFF7F50), // Coral/Orange
-];
+const ACCENT_COLOR = new THREE.Color(0x8A3FFC);
 
-const ThreeScene = ({ className }: { className?: string }) => {
+const ThreeScene = ({ className, modelUrl = "/mystic_inquisitor.glb" }: ThreeSceneProps) => {
   const mountRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -42,49 +39,87 @@ const ThreeScene = ({ className }: { className?: string }) => {
     renderer.setPixelRatio(window.devicePixelRatio);
     currentMount.appendChild(renderer.domElement);
 
-    // Object
-    const material = new THREE.MeshStandardMaterial({
-      color: colors[0],
-      metalness: 0.8,
-      roughness: 0.1,
-      emissive: colors[0],
-      emissiveIntensity: 0.2,
-    });
-    const mesh = new THREE.Mesh(geometries[0], material);
-    scene.add(mesh);
-    camera.position.z = 4.5;
-
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0xffffff, 50, 100);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
+    const keyLight = new THREE.PointLight(0xffffff, 60, 200);
+    keyLight.position.set(5, 5, 8);
+    scene.add(keyLight);
+    const fillLight = new THREE.PointLight(ACCENT_COLOR, 80, 200);
+    fillLight.position.set(-8, -6, -6);
+    scene.add(fillLight);
 
-    const pointLight2 = new THREE.PointLight(colors[0], 100, 100);
-    pointLight2.position.set(-10, -10, -10);
-    scene.add(pointLight2);
-    
-    const elasticity = 0.05;
+    camera.position.set(0, -2, 5);
+
+    let modelRoot: THREE.Object3D | null = null;
+
+    // Lazy-load GLTFLoader to avoid SSR issues
+    const loadModel = async () => {
+      const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+      const loader = new GLTFLoader();
+
+      return new Promise<void>((resolve, reject) => {
+        loader.load(
+          modelUrl,
+          (gltf) => {
+            if (!isMounted) return resolve();
+            modelRoot = gltf.scene;
+            modelRoot.traverse((child) => {
+              if ((child as THREE.Mesh).isMesh) {
+                const mesh = child as THREE.Mesh;
+                if (Array.isArray((mesh.material as any))) {
+                  (mesh.material as any).forEach((m: THREE.Material) => {
+                    const std = m as THREE.MeshStandardMaterial;
+                    if (std && "emissive" in std) {
+                      std.emissive = ACCENT_COLOR.clone();
+                      std.emissiveIntensity = 0.15;
+                    }
+                  });
+                } else {
+                  const std = mesh.material as THREE.MeshStandardMaterial;
+                  if (std && "emissive" in std) {
+                    std.emissive = ACCENT_COLOR.clone();
+                    std.emissiveIntensity = 0.15;
+                  }
+                }
+              }
+            });
+
+            // Center and scale model to 70% of page size
+            const box = new THREE.Box3().setFromObject(modelRoot);
+            const size = new THREE.Vector3();
+            box.getSize(size);
+            const maxDim = Math.max(size.x, size.y, size.z) || 1;
+            const scale = 4.0 / maxDim; // Increased from 2.2 to 7.0 for 70% page size
+            modelRoot.scale.setScalar(scale);
+            
+            // Position model in 3rd quarter (near bottom) of the page
+            const center = box.getCenter(new THREE.Vector3());
+            modelRoot.position.sub(center.multiplyScalar(scale));
+            modelRoot.position.y = -2.5; // Move model further down to appear in 3rd quarter
+
+            scene.add(modelRoot);
+            resolve();
+          },
+          undefined,
+          (err) => reject(err)
+        );
+      });
+    };
+
+    loadModel().catch(() => {
+      // keep the scene empty on error
+    });
+
     const targetRotation = { x: 0, y: 0 };
-    const targetColor = new THREE.Color(colors[0]);
+    const elasticity = 0.05;
+    const targetColor = ACCENT_COLOR.clone();
 
     function onScroll() {
       if (!isMounted) return;
       const scrollY = window.scrollY;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
-      const totalFrames = 5; 
-      const chapterIndex = (scrollY / scrollHeight) > (2.5 / totalFrames) ? 1 : 0;
-
       targetRotation.y = scrollY * 0.002;
       targetRotation.x = scrollY * 0.001;
-      
-      if (mesh.geometry !== geometries[chapterIndex]) {
-        mesh.geometry.dispose();
-        mesh.geometry = geometries[chapterIndex];
-      }
-      targetColor.copy(colors[chapterIndex]);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     
@@ -99,14 +134,14 @@ const ThreeScene = ({ className }: { className?: string }) => {
       const elapsedTime = clock.getElapsedTime();
 
       const continuousRotationX = Math.sin(elapsedTime * 0.2) * 0.25;
-      const continuousRotationY = elapsedTime * 0.1;
+      const continuousRotationY = elapsedTime * 0.3; // Increased from 0.1 to 0.3 for faster rotation
       
-      mesh.rotation.x += (targetRotation.x + continuousRotationX - mesh.rotation.x) * elasticity;
-      mesh.rotation.y += (targetRotation.y + continuousRotationY - mesh.rotation.y) * elasticity;
+      if (modelRoot) {
+        modelRoot.rotation.x += (targetRotation.x + continuousRotationX - modelRoot.rotation.x) * elasticity;
+        modelRoot.rotation.y += (targetRotation.y + continuousRotationY - modelRoot.rotation.y) * elasticity;
+      }
       
-      material.color.lerp(targetColor, elasticity);
-      material.emissive.lerp(targetColor, elasticity);
-      pointLight2.color.lerp(targetColor, elasticity);
+      fillLight.color.lerp(targetColor, elasticity);
       
       renderer.render(scene, camera);
     };
@@ -130,12 +165,13 @@ const ThreeScene = ({ className }: { className?: string }) => {
         currentMount.removeChild(renderer.domElement);
       }
 
-      // Dispose of Three.js objects
-      material.dispose();
-      geometries.forEach(g => g.dispose());
+      if (modelRoot) {
+        scene.remove(modelRoot);
+      }
+
       renderer.dispose();
     };
-  }, []);
+  }, [modelUrl]);
 
   return <div ref={mountRef} className={cn("w-full h-full", className)} />;
 };

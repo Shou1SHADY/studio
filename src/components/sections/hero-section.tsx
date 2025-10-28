@@ -31,7 +31,7 @@ export const HeroSection = () => {
       {/* 3D Background */}
       <div className="sticky top-0 h-screen w-full">
         <div className="absolute inset-0 z-0">
-          <ThreeScene />
+          <ThreeScene modelUrl={"/models/the_noble_craftsman.glb"} />
         </div>
       </div>
 
